@@ -3,12 +3,11 @@ const app = express();
 const path = require('path');
 const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
-const createRouter = ('./helpers/create_router.js');
+const createRouter = require('./helpers/create_router.js');
 
-MongoClient.connect('mongo://localhost:27017')
+MongoClient.connect('mongodb://localhost:27017')
 .then((client) => {
   const db = client.db('trivia_questions');
-
   const questionsCollection = db.collection('questions');
   const questionsRouter = createRouter(questionsCollection);
   app.use('/api/questions', questionsRouter);

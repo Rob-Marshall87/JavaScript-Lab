@@ -1,0 +1,32 @@
+{
+  "name": "project_javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server:dev": "nodemon server/server.js",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rob-Marshall87/JavaScript-Lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rob-Marshall87/JavaScript-Lab/issues"
+  },
+  "homepage": "https://github.com/Rob-Marshall87/JavaScript-Lab#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.11",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3"
+  }
+}
