@@ -7,5 +7,5 @@ const FilmTrivia = function (url) {
 };
 
 FilmTrivia.prototype.bindEvents = function () {
-
+  
 };
