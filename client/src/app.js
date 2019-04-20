@@ -1,4 +1,4 @@
-const FilmTriviaFormView = require('./views/film_trivia_form_view.js')
+const FilmTriviaFormView = require('./views/film_trivia_form_view.js');
 const FilmTriviaGridView = require('./views/film_trivia_grid_view.js');
 const FilmTrivia = require('./models/film_trivia.js');
 const Grid = require('./models/grid.js');

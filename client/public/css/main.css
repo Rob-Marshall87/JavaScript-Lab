@@ -24,7 +24,7 @@
   grid-template-columns: auto auto auto;
   text-align: center;
   background-size: auto;
-  background-image: url('../images/burt.jpg');
+  /* background-image: url('../images/burt.jpg'); */
   background-position: center center;
   padding: 10px;
 }
@@ -34,4 +34,10 @@
   padding: 20px;
   font-size: 30px;
   text-align: center;
+}
+
+#choices-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
