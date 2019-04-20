@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const filmTriviaFormView = new FilmTriviaFormView(filmTriviaForm);
   filmTriviaFormView.bindEvents();
 
-  const filmTriviaGridContainer = document.querySelector('div#filmTrivia');
-  const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
-  filmTriviaGridView.bindEvents();
+  // const filmTriviaGridContainer = document.querySelector('div#filmTrivia');
+  // const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
+  // filmTriviaGridView.bindEvents();
 
   const url = 'http://localhost:3000/api/questions';
   const filmTrivia = new FilmTrivia(url);

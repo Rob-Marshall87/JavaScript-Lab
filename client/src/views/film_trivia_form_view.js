@@ -5,7 +5,10 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 };
 
 FilmTriviaFormView.prototype.bindEvents = function () {
-  // PubSub.subscribe()
+  PubSub.subscribe('FilmTrivia:items-ready', (evt) => {
+    console.log(evt.detail);
+  })
+};
 
   //subs to data-ready
   // grabs display div
@@ -14,4 +17,5 @@ FilmTriviaFormView.prototype.bindEvents = function () {
   //calls multiply boxes
   //adds event listeners to each box (click)
   //sends correct/incorrect to film_trivia.js
-};
+
+module.exports = FilmTriviaFormView;
