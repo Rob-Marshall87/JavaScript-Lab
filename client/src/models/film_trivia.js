@@ -12,8 +12,7 @@ FilmTrivia.prototype.bindEvents = function () {
 };
 
 FilmTrivia.prototype.getData = function () {
-  const request = new Request(this.url);
-  request.get()
+  this.request.get()
     .then( (items) => {
       PubSub.publish('FilmTrivia:items-ready', items);
     })
