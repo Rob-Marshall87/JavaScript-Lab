@@ -38,34 +38,23 @@ Grid.prototype.reset = function() {
 }
 Grid.prototype.randomiser = function() {
     const active = [];
-      let box;
     for (i = 0; i < 9; i++) {
-      if (this.grid[i] === false) {
-        active.push(i);
-        box = document.querySelector(`#grid-${i}`);
-        setInterval(function () {
-            var randomColor = Math.floor(Math.random()*16777215).toString(16);
-            box.style.backgroundColor = "#"+randomColor;
-        },100); };
+      if (this.grid[i] === false) { active.push(i) };
     }
-    console.log(active);
-    // console.log('Active:', active);
-    // let index = 0;
-    //
-    // let colour = 'rgba(128, 128, 255, 1.0)'
-    //   console.log(colour);
-    // // while (true) {
-    //   for (let x = 0; x < 20; x++){
-    //     index =  this.randomIndex(active.length);
-    //       // console.log(index);
-    //     box = document.querySelector(`#grid-${active[index]}`);
-    //     setInterval(function () {
-    //         var randomColor = Math.floor(Math.random()*16777215).toString(16);
-    //         box.style.backgroundColor = "#"+randomColor;
-    //     },1000);
-    //     // (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
-    //     // setInterval(this.goColour(box, colour), 250);
-    //   }
+    console.log('Active:', active);
+    let index = 0;
+    let box;
+    let colour = 'rgba(128, 128, 255, 1.0)'
+      console.log(colour);
+    // while (true) {
+      for (let x = 0; x < 20; x++){
+        index =  this.randomIndex(active.length);
+          // console.log(index);
+        box = document.querySelector(`#grid-${active[index]}`);
+        (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
+        setInterval(this.goColour(box, colour), 250);
+      }
+            console.log(index);
 }
 Grid.prototype.goColour = function(box, colour){
   box.style.backgroundColor = colour;
