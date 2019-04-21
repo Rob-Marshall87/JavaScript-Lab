@@ -61,8 +61,8 @@ FilmTrivia.prototype.populateQuestion = function(question) {
 };
 
 FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
-  const choicesDiv = document.querySelector('#choices-div');
-  choicesDiv.innerHTML = '';
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
 
   const h4 = document.createElement('h4');
 
@@ -74,7 +74,33 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
     h4.classList.add('big-answer-text-red');
   }
 
-  choicesDiv.appendChild(h4);
+  questionDiv.appendChild(h4);
+};
+
+FilmTrivia.prototype.textBox = function() {
+  const choicesDiv = document.querySelector('#choices-div');
+  choicesDiv.innerHTML = '';
+
+  const form = document.createElement('form');
+  form.classList.add('form');
+
+  const textBox = document.createElement('input');
+  textBox.classList.add('text-box')
+  textBox.placeholder = 'Take your guess!';
+
+  const input = document.createElement('input');
+  input.classList.add('input');
+  input.type = "submit";
+
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    alert('SUBMITTED ANSWER GOES HERE');
+  });
+
+  form.appendChild(textBox);
+  form.appendChild(input);
+
+  choicesDiv.appendChild(form);
 };
 
 module.exports = FilmTrivia;

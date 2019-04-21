@@ -25,13 +25,13 @@ FilmTriviaFormView.prototype.bindEvents = function () {
         if (evt.target.innerText === correctAnswer) {
           PubSub.publish('FilmTriviaForm:answer', true);
           filmTrivia.bigAnswerText(correctAnswer, true);
+          filmTrivia.textBox();
         } else {
           PubSub.publish('FilmTriviaForm:answer', false);
           filmTrivia.bigAnswerText(correctAnswer, false);
         }
       });
     };
-
   });
 };
 

@@ -25,7 +25,7 @@ Grid.prototype.populate = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i]) {
           const box = document.querySelector(`#grid-${i}`);
-          console.log(box);
+          // console.log(box);
           box.style.opacity = '0.0';
       }
     }
@@ -41,11 +41,11 @@ Grid.prototype.randomiser = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i] === false) { active.push(i) };
     }
-    console.log('Active:', active);
+    // console.log('Active:', active);
     let index = 0;
     let box;
     let colour = 'rgba(128, 128, 255, 1.0)'
-      console.log(colour);
+      // console.log(colour);
     // while (true) {
       for (let x = 0; x < 20; x++){
         index =  this.randomIndex(active.length);
@@ -54,7 +54,7 @@ Grid.prototype.randomiser = function() {
         (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
         setInterval(this.goColour(box, colour), 250);
       }
-            console.log(index);
+            // console.log(index);
 }
 Grid.prototype.goColour = function(box, colour){
   box.style.backgroundColor = colour;

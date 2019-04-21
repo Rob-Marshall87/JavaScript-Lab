@@ -72,3 +72,19 @@
   margin: 0;
   padding: 0;
 }
+
+.text-box {
+  padding: 0.5em 0.5em;
+  font-size: 1em;
+  color: white;
+  background-color: black;
+}
+
+.input {
+  background-color: white;
+  padding: 0.5em 0.5em;
+}
+
+.form {
+  background-color: black;
+}
