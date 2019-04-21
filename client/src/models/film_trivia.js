@@ -38,7 +38,7 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
   this.answersDiv = document.querySelector('#choices-div');
 
   const letters = ["A", "B", "C", "D"];
-
+  console.log(answers);
   for (var i = 0; i < answers.length; i++) {
     const div = document.createElement('div');
     const p = document.createElement('p');
@@ -49,6 +49,15 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
     this.answersDiv.appendChild(div);
   }
 };
+
+FilmTrivia.prototype.questionRandomiser = function(){
+  const possibilities = [[0,1,2,3], [0,2,3,1], [0,3,2,1], [0,3,1,2], [0,1,3,2], [0,2,1,3],
+                         [1,2,3,0], [1,2,0,3], [1,0,2,3], [1,0,3,2], [1,3,2,0], [1,3,0,2],
+                         [2,1,0,3], [2,1,3,0], [2,0,1,3], [2,0,3,1], [2,3,1,0], [2,3,0,1],
+                         [3,0,1,2], [3,0,2,1], [3,1,2,0], [3,1,0,2], [3,2,0,1], [3,2,1,0]];
+  const index = Math.floor(Math.random() * (possibilities.length));
+  return possibilities[index];
+}
 
 FilmTrivia.prototype.populateQuestion = function(question) {
   const questionDiv = document.querySelector('#question-div');
