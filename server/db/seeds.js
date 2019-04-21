@@ -5,7 +5,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "What breed of dog was Marley in the film &quot;Marley &amp; Me&quot; (2008)?",
+  question: "What breed of dog was Marley in the film 'Marley & Me' (2008)?",
   correct_answer: "Labrador Retriever",
   incorrect_answer: [
     "Golden Retriever",
@@ -17,7 +17,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  questions: "Which of the following is not the name of a &quot;Bond Girl&quot;? ",
+  questions: "Which of the following is not the name of a 'Bond Girl'? ",
   correct_answer: "Vanessa Kensington",
   incorrect_answer: [
     "Pam Bouvier",
@@ -29,7 +29,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Which of the following was not one of &quot;The Magnificent Seven&quot;?",
+  question: "Which of the following was not one of 'The Magnificent Seven'?",
   correct_answer: "Clint Eastwood",
   incorrect_answer: [
     "Steve McQueen",
@@ -113,7 +113,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "When was the movie &#039;Con Air&#039; released?",
+  question: "When was the movie 'Con Air' released?",
   correct_answer: "1997",
   incorrect_answer: [
     "1985",
@@ -125,7 +125,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who wrote and directed the 1986 film &#039;Platoon&#039;?",
+  question: "Who wrote and directed the 1986 film 'Platoon'?",
   correct_answer: "Oliver Stone",
   incorrect_answer: [
     "Francis Ford Coppola",
@@ -137,7 +137,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who played Deputy Marshal Samuel Gerard in the 1993 film &quot;The Fugitive&quot;?",
+  question: "Who played Deputy Marshal Samuel Gerard in the 1993 film 'The Fugitive'?",
   correct_answer: "Tommy Lee Jones",
   incorrect_answer: [
     "Harrison Ford",
@@ -149,7 +149,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who played the female lead in the 1933 film &quot;King Kong&quot;?",
+  question: "Who played the female lead in the 1933 film 'King Kong'?",
   correct_answer: "Fay Wray",
   incorrect_answer: [
     "Jean Harlow",
@@ -161,7 +161,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Which actress danced the twist with John Travolta in &#039;Pulp Fiction&#039;?",
+  question: "Which actress danced the twist with John Travolta in 'Pulp Fiction'?",
   correct_answer: "Uma Thurman",
   incorrect_answer: [
     "Kathy Griffin",
@@ -173,7 +173,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who starred in the film 1973 movie &quot;Enter The Dragon&quot;?",
+  question: "Who starred in the film 1973 movie 'Enter The Dragon'?",
   correct_answer: "Bruce Lee",
   incorrect_answer: [
     "Jackie Chan",
@@ -185,7 +185,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Which movie contains the quote, &quot;Say hello to my little friend!&quot;?",
+  question: "Which movie contains the quote, 'Say hello to my little friend!'?",
   correct_answer: "Scarface",
   incorrect_answer: [
     "Reservoir Dogs",
@@ -197,7 +197,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who directed the movies &quot;Pulp Fiction&quot;, &quot;Reservoir Dogs&quot; and &quot;Django Unchained&quot;?",
+  question: "Who directed the movies 'Pulp Fiction', 'Reservoir Dogs' and 'Django Unchained'?",
   correct_answer: "Quentin Tarantino",
   incorrect_answer: [
     "Martin Scorcese",
@@ -209,7 +209,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who directed the 2015 movie &quot;The Revenant&quot;?",
+  question: "Who directed the 2015 movie 'The Revenant'?",
   correct_answer: "Alejandro G. I&ntilde;&aacute;rritu",
   incorrect_answer: [
     "Christopher Nolan",
@@ -245,7 +245,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "This movie contains the quote, &quot;I feel the need ... the need for speed!&quot;",
+  question: "This movie contains the quote, 'I feel the need ... the need for speed!'",
   correct_answer: "Top Gun",
   incorrect_answer: [
     "Days of Thunder",
@@ -257,11 +257,11 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "This movie contains the quote, &quot;Nobody puts Baby in a corner.&quot;",
+  question: "This movie contains the quote, 'Nobody puts Baby in a corner.'",
   correct_answer: "Dirty Dancing",
   incorrect_answer: [
     "Three Men and a Baby",
-    "Ferris Bueller&#039;s Day Off",
+    "Ferris Bueller's Day Off",
     "Pretty in Pink"
   ]
 },
@@ -269,7 +269,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "What is the orange and white bot&#039;s name in &quot;Star Wars: The Force Awakens&quot;?",
+  question: "What is the orange and white bot's name in 'Star Wars: The Force Awakens'?",
   correct_answer: "BB-8",
   incorrect_answer: [
     "BB-3",
@@ -293,7 +293,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Which of these actors/actresses is NOT a part of the cast for the 2016 movie &quot;Suicide Squad&quot;?",
+  question: "Which of these actors/actresses is NOT a part of the cast for the 2016 movie 'Suicide Squad'?",
   correct_answer: "Scarlett Johansson",
   incorrect_answer: [
     "Jared Leto",
@@ -356,7 +356,7 @@ db.questions.insertMany([{
   question: "Who is the main protagonist in, the 1985 film, Back to the Future?",
   correct_answer: "Marty McFly",
   incorrect_answer: [
-    "Emmett &quot;Doc&quot; Brown",
+    "Emmett 'Doc' Brown",
     "Biff Tannen",
     "George McFly"
   ]
@@ -365,7 +365,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the movie &quot;Cast Away&quot; the main protagonist&#039;s best friend while on the island is named",
+  question: "In the movie 'Cast Away' the main protagonist's best friend while on the island is named",
   correct_answer: "Wilson",
   incorrect_answer: [
     "Carson",
@@ -377,7 +377,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "Who in Pulp Fiction says &quot;No, they got the metric system there, they wouldn&#039;t know what the fuck a Quarter Pounder is.&quot;",
+  question: "Who in Pulp Fiction says 'No, they got the metric system there, they wouldn't know what the fuck a Quarter Pounder is.'",
   correct_answer: "Vincent Vega",
   incorrect_answer: [
     "Jules Winnfield",
@@ -389,7 +389,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In &quot;Jurassic World&quot;, what is the name of the dinosaur that is a genetic hybrid?",
+  question: "In 'Jurassic World', what is the name of the dinosaur that is a genetic hybrid?",
   correct_answer: "Indominus Rex",
   incorrect_answer: [
     "Mosasaurus",
@@ -401,7 +401,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "The 2002 film &quot;28 Days Later&quot; is mainly set in which European country?",
+  question: "The 2002 film '28 Days Later' is mainly set in which European country?",
   correct_answer: "United Kingdom",
   incorrect_answer: [
     "France",
@@ -413,7 +413,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the movie &quot;Spaceballs&quot;, what are the Spaceballs attempting to steal from Planet Druidia?",
+  question: "In the movie 'Spaceballs', what are the Spaceballs attempting to steal from Planet Druidia?",
   correct_answer: "Air",
   incorrect_answer: [
     "The Schwartz",
@@ -437,7 +437,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "When does &quot;Rogue One: A Star Wars Story&quot; take place chronologically in the series?",
+  question: "When does 'Rogue One: A Star Wars Story' take place chronologically in the series?",
   correct_answer: "Between Episode 3 and 4",
   incorrect_answer: [
     "After Episode 6",
@@ -449,7 +449,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "&quot;The first rule is: you don&#039;t talk about it&quot; is a reference to which movie?",
+  question: "'The first rule is: you don't talk about it' is a reference to which movie?",
   correct_answer: "Fight Club",
   incorrect_answer: [
     "The Island",
@@ -461,8 +461,8 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the 2012 film, &quot;The Lorax&quot;, who is the antagonist?",
-  correct_answer: "Aloysius O&#039;Hare",
+  question: "In the 2012 film, 'The Lorax', who is the antagonist?",
+  correct_answer: "Aloysius O'Hare",
   incorrect_answer: [
     "Ted Wiggins",
     "The Once-Ler",
@@ -473,7 +473,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the 1992 film &quot;Army of Darkness&quot;, what name does Ash give to his double-barreled shotgun?",
+  question: "In the 1992 film 'Army of Darkness', what name does Ash give to his double-barreled shotgun?",
   correct_answer: "Boomstick",
   incorrect_answer: [
     "Bloomstick",
@@ -485,7 +485,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "At the end of the 2001 film &quot;Rat Race&quot;, whose concert do the contestants crash?",
+  question: "At the end of the 2001 film 'Rat Race', whose concert do the contestants crash?",
   correct_answer: "Smash Mouth",
   incorrect_answer: [
     "Bowling for Soup",
@@ -509,7 +509,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the movie &quot;Blade Runner&quot;, what is the term used for human-like androids ?",
+  question: "In the movie 'Blade Runner', what is the term used for human-like androids ?",
   correct_answer: "Replicants",
   incorrect_answer: [
     "Cylons",
@@ -521,7 +521,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "In the 1995 film &quot;Balto&quot;, who are Steele&#039;s accomplices?",
+  question: "In the 1995 film 'Balto', who are Steele's accomplices?",
   correct_answer: "Kaltag, Nikki, and Star",
   incorrect_answer: [
     "Dusty, Kirby, and Ralph",
@@ -533,7 +533,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "What is the name of the island that &quot;Jurassic Park&quot; is built on?",
+  question: "What is the name of the island that 'Jurassic Park' is built on?",
   correct_answer: "Isla Nublar",
   incorrect_answer: [
     "Isla Sorna",
@@ -545,7 +545,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "What was Bruce Campbell&#039;s iconic one-liner after getting a chainsaw hand in Evil Dead 2?",
+  question: "What was Bruce Campbell's iconic one-liner after getting a chainsaw hand in Evil Dead 2?",
   correct_answer: "Groovy.",
   incorrect_answer: [
     "Gnarly.",
@@ -557,7 +557,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  question: "For the film &quot;Raiders of The Lost Ark&quot;, what was Harrison Ford sick with during the filming of the Cairo chase?",
+  question: "For the film 'Raiders of The Lost Ark', what was Harrison Ford sick with during the filming of the Cairo chase?",
   correct_answer: "Dysentery",
   incorrect_answer: [
     "Anemia",
