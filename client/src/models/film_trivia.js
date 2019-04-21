@@ -37,13 +37,15 @@ FilmTrivia.prototype.answers = function(randomObject) {
 FilmTrivia.prototype.populateAnswers = function(answers) {
   this.answersDiv = document.querySelector('#choices-div');
 
+  const letters = ["A", "B", "C", "D"];
+
   for (var i = 0; i < answers.length; i++) {
     const div = document.createElement('div');
-    const h4 = document.createElement('h4');
+    const p = document.createElement('p');
     div.classList.add('boxes');
-    h4.classList.add('h4');
-    h4.textContent = answers[i];
-    div.appendChild(h4);
+    p.classList.add('p');
+    p.textContent = `${letters[i]}: ${answers[i]}`;
+    div.appendChild(p);
     this.answersDiv.appendChild(div);
   }
 };

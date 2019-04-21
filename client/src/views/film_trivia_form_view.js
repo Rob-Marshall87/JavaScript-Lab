@@ -18,7 +18,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     filmTrivia.populateAnswers(answers);
 
     const correctAnswer = randomObject.correct_answer;
-    this.boxes = document.querySelectorAll('.h4');
+    this.boxes = document.querySelectorAll('.p');
 
     for (var i = 0; i < this.boxes.length; i++) {
       this.boxes[i].addEventListener('click', (evt) => {
