@@ -17,12 +17,13 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     filmTrivia.populateQuestion(question);
     filmTrivia.populateAnswers(answers);
 
-    this.correctAnswer = randomObject.correct_answer;
+    const correctAnswer = randomObject.correct_answer;
     this.boxes = document.querySelectorAll('.h4');
 
     for (var i = 0; i < this.boxes.length; i++) {
-      this.boxes[i].addEventListener('click', () => {
-        if (this.textContent === this.correctAnswer) {
+      // console.dir(this.boxes[i].innerText);
+      this.boxes[i].addEventListener('click', (evt) => {
+        if (evt.target.innerText == correctAnswer) {
           alert('Win!');
         } else {
           alert('Lose!');

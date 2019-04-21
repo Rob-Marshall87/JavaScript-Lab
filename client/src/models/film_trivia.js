@@ -25,9 +25,7 @@ FilmTrivia.prototype.newQuestion = function(questions) {
 };
 
 FilmTrivia.prototype.answers = function(randomObject) {
-  // console.log(randomObject);
   const answers = [];
-  // const randomAnswers = [];
 
   answers.push(randomObject.correct_answer)
   for (var i = 0; i < randomObject.incorrect_answer.length; i++) {
