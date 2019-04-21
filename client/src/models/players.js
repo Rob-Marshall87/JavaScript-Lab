@@ -1,7 +1,9 @@
-const Player = function{
-  this.player1 = 0;
-  this.player2 = 0
+const Player = function {
+  this.points = 0;
 };
+
+const team1 = new Player();
+const team2 = new Player();
 
 
 Players.prototype.bindEvents = function () {
