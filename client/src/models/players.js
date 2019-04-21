@@ -8,41 +8,47 @@ const team2 = new Player();
 
 Players.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:player1-selected', (evt) => {
-    this.playerSelected(evt.detail);
+    team1.questionAnswered(evt.detail);
   });
 
   PubSub.subscribe('FormView:player2-selected', (evt) => {
-    this.playerSelected(evt.detail);
+    team2.questionAnswered(evt.detail);
   });
 };
 
+Players.prototype.questionAnswered = function () {
+  PubSub.subscribe('FormView:Inputted-answer-trivia', (evt) => {
+    this.triviaAddPoints(evt);
+  });
 
+  PubSub.subscribe('FormView:Inputted-answer-image', (evt) => {
+    this.imageAddPoints(evt);
+  });
 
-
-Players.prototype.playerSelected = function () {
-  if (evt.detail === player1) {
-    player = this.player1;
-  }else {
-    player = this.player2;
-  }
-  player.addPoints(evt.detail)
+  PubSub.publish('Players:return-scores', (team1, team2));
 };
 
 
-Players.prototype.changePlayer = function {
-if (player === this.player1) {
+// Players.prototype.changePlayer = function {
+// if (player === this.player1) {
+//
+// }
+// };
 
-}
-};
 
 
-
-Players.prototype.addPoints = function {
+Players.prototype.triviaAddPoints = function () {
   PubSub.subscribe('FormView:question-answered', (evt) => {
-    if (true) {
-      player = player + points
-    } else {
-
-    }
+    const points = this.points;
+    this.points = points + 20;
   });
+  // return points
+};
+
+Players.prototype.imageAddPoints = function () {
+  PubSub.subscribe('FormView:question-answered', (evt) => {
+    const points = this.points;
+    this.points = points + 50;
+  });
+  // return points
 };
