@@ -24,8 +24,10 @@ FilmTriviaFormView.prototype.bindEvents = function () {
       this.boxes[i].addEventListener('click', (evt) => {
         if (evt.target.innerText === correctAnswer) {
           PubSub.publish('FilmTriviaForm:answer', true);
+          filmTrivia.bigAnswerText(correctAnswer, true);
         } else {
           PubSub.publish('FilmTriviaForm:answer', false);
+          filmTrivia.bigAnswerText(correctAnswer, false);
         }
       });
     };

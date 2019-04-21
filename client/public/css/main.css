@@ -36,17 +36,39 @@
   text-align: center;
 }
 
-#choices-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+#question-box {
+  background-color: black;
 }
 
-.boxes {
-  background-color: green;
+#choices-div,
+#question-div {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .p {
   padding-left: 1em;
   padding-right: 1em;
+  margin: 0;
+}
+
+.question-paragraph {
+  margin: 0;
+  padding: 0;
+}
+
+.big-answer-text-green {
+  background-color: black;
+  color: green;
+  margin: 0;
+  padding: 0;
+}
+
+.big-answer-text-red {
+  background-color: black;
+  color: red;
+  margin: 0;
+  padding: 0;
 }

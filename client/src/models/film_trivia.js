@@ -37,14 +37,14 @@ FilmTrivia.prototype.answers = function(randomObject) {
 FilmTrivia.prototype.populateAnswers = function(answers) {
   this.answersDiv = document.querySelector('#choices-div');
 
-  const letters = ["A", "B", "C", "D"];
+  // const letters = ["A", "B", "C", "D"];
 
   for (var i = 0; i < answers.length; i++) {
     const div = document.createElement('div');
     const p = document.createElement('p');
     div.classList.add('boxes');
     p.classList.add('p');
-    p.textContent = `${letters[i]}: ${answers[i]}`;
+    p.textContent = answers[i];
     div.appendChild(p);
     this.answersDiv.appendChild(div);
   }
@@ -53,10 +53,28 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
 FilmTrivia.prototype.populateQuestion = function(question) {
   const questionDiv = document.querySelector('#question-div');
   const p = document.createElement('p');
+  p.classList.add('question-paragraph');
 
   p.textContent = question;
 
   questionDiv.appendChild(p);
+};
+
+FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
+  const choicesDiv = document.querySelector('#choices-div');
+  choicesDiv.innerHTML = '';
+
+  const h4 = document.createElement('h4');
+
+  if (boolean) {
+    h4.textContent = `Right! Correct answer: ${correctAnswer}.`;
+    h4.classList.add('big-answer-text-green');
+  } else {
+    h4.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
+    h4.classList.add('big-answer-text-red');
+  }
+
+  choicesDiv.appendChild(h4);
 };
 
 module.exports = FilmTrivia;
