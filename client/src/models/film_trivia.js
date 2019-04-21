@@ -42,6 +42,8 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
   for (var i = 0; i < answers.length; i++) {
     const div = document.createElement('div');
     const h4 = document.createElement('h4');
+    div.classList.add('boxes');
+    h4.classList.add('h4');
     h4.textContent = answers[i];
     div.appendChild(h4);
     this.answersDiv.appendChild(div);

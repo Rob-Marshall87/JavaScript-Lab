@@ -13,20 +13,24 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     const randomObject = filmTrivia.newQuestion(this.questions);
 
     const question = randomObject.question;
-    const correctAnswer = randomObject.correct_answer;
-    const answers = filmTrivia.answers(randomObject)
-
+    const answers = filmTrivia.answers(randomObject);
     filmTrivia.populateQuestion(question);
     filmTrivia.populateAnswers(answers);
-  })
-};
 
-  //subs to data-ready
-  // grabs display div
-  //calls populateQuestion function
-  //calls generate answer box
-  //calls multiply boxes
-  //adds event listeners to each box (click)
-  //sends correct/incorrect to film_trivia.js
+    this.correctAnswer = randomObject.correct_answer;
+    this.boxes = document.querySelectorAll('.h4');
+
+    for (var i = 0; i < this.boxes.length; i++) {
+      this.boxes[i].addEventListener('click', () => {
+        if (this.textContent === this.correctAnswer) {
+          alert('Win!');
+        } else {
+          alert('Lose!');
+        }
+      });
+    };
+
+  });
+};
 
 module.exports = FilmTriviaFormView;
