@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
   // filmTriviaGridView.bindEvents();
 
-<<<<<<< HEAD
   // const filmTriviaGridContainer = document.querySelector('div#filmTrivia');
   // const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
   // filmTriviaGridView.bindEvents();
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const filmTrivia = new FilmTrivia(url);
   filmTrivia.bindEvents();
   filmTrivia.getData();
-=======
+
   // const url = 'http://localhost:3000/api/questions';
   // const filmTrivia = new FilmTrivia(url);
   // filmTrivia.bindEvents();
@@ -29,5 +28,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = new Grid();
   grid.populate();
   grid.randomiser();
->>>>>>> 046df67334a8c2aadf9e8a6608ae28e8162096d8
 });
