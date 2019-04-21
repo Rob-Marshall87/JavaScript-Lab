@@ -21,12 +21,11 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     this.boxes = document.querySelectorAll('.h4');
 
     for (var i = 0; i < this.boxes.length; i++) {
-      // console.dir(this.boxes[i].innerText);
       this.boxes[i].addEventListener('click', (evt) => {
-        if (evt.target.innerText == correctAnswer) {
-          alert('Win!');
+        if (evt.target.innerText === correctAnswer) {
+          PubSub.publish('FilmTriviaForm:answer', true)
         } else {
-          alert('Lose!');
+          PubSub.publish('FilmTriviaForm:answer', false)
         }
       });
     };
