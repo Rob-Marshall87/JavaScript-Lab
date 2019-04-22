@@ -41,21 +41,54 @@ Grid.prototype.randomiser = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i] === false) { active.push(i) };
     }
+
     console.log('Active:', active);
-    let index = 0;
+    // let index = 0;
     let box;
     let colour = 'rgba(128, 128, 255, 1.0)'
-      console.log(colour);
-    // while (true) {
-      for (let x = 0; x < 20; x++){
+
+      // for (let x = 0; x < 20; x++){
         index =  this.randomIndex(active.length);
-          // console.log(index);
-        box = document.querySelector(`#grid-${active[index]}`);
-        (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
-        setInterval(this.goColour(box, colour), 250);
-      }
-            console.log(index);
+        // box = document.querySelector(`#grid-${active[index]}`);
+        // (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
+        // setInterval(this.goColour(box, 'red'),500);
+        //
+        // setInterval(this.goColour(box, 'rgba(128, 128, 255, 1.0)'),500);
+
+        // const interval = setInterval(() => {
+        //   colour = (colour === 'red') ? 'rgba(128, 128, 255, 1.0)' : 'red';
+        //   this.goColour(box, colour);
+        //
+        // }, 1000);
+
+        this.changeBox(active, active.length);
+
+        // setTimeout(()=> {console.log('Banana!');}, 2500);
+        // this.goColour(box, colour);
+
+
 }
+
+// Grid.prototype.tenTimes = function(active, active.length)
+
+Grid.prototype.changeBox =  function(active, len) {
+  index =  this.randomIndex(active.length);
+  const box = document.querySelector(`#grid-${active[index]}`);
+  this.flash(6, box, 'red');
+  if (len > 0) {
+    len--;
+    setTimeout(()=>{this.changeBox(active, len)}, 300);
+  }
+}
+Grid.prototype.flash = function (times, box, colour) {
+  colour = (colour === 'red') ? 'rgba(128, 128, 255, 1.0)' : 'red';
+  this.goColour(box, colour);
+  if (times > 0) {
+    setTimeout(() => {
+      this.flash(--times, box, colour);
+    }, 50)
+  }
+};
 Grid.prototype.goColour = function(box, colour){
   box.style.backgroundColor = colour;
 };
@@ -63,8 +96,8 @@ Grid.prototype.randomIndex = function(number){
   return Math.floor(Math.random() * (number));
 }
 
-Grid.prototype.flash = function(box, colour){
-  box.style.backgroundColor = colour;
-}
+// Grid.prototype.flash = function(box, colour){
+//   box.style.backgroundColor = colour;
+// }
 
 module.exports = Grid;
