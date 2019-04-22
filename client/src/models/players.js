@@ -1,3 +1,7 @@
+const PubSub = require('../helpers/pub_sub.js');
+const RequestHelper = require('../helpers/request_helper.js');
+
+
 const Player = function {
   this.points = 0;
 };
@@ -7,12 +11,12 @@ const team2 = new Player();
 
 
 Players.prototype.bindEvents = function () {
-  PubSub.subscribe('FormView:player1-selected', (evt) => {
-    team1.questionAnswered(evt.detail);
-  });
-
-  PubSub.subscribe('FormView:player2-selected', (evt) => {
-    team2.questionAnswered(evt.detail);
+  PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
+    if (evt.detail === team1) {
+      team1.questionAnswered(evt.detail);
+    }else {
+      team2.questionAnswered(evt.detail);
+    };
   });
 };
 
