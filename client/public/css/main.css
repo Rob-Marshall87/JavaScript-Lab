@@ -1,20 +1,50 @@
 * {
-  background-color: red;
+margin: 0;
+padding: 0;
 }
+
+html{
+  height:100%;
+}
+
+header {
+  background-color: rgba(223, 179, 51);
+  height: 4em;
+  width: 100%;
+  position: relative;
+  min-height:100%;
+  margin-bottom: 3em;
+}
+
+body {
+  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(./img/Movie-Collage.jpg);
+  position: relative;
+  min-height:100%;
+}
+
+footer {
+  background-color: rgba(223, 179, 51);
+  height: 4em;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  margin-top: 3em;
+}
+
 .game-grid-container {
   display: grid;
   z-index: 0;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-
+  /* background-color: #0005; */
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center center;
   padding: 10px;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 1.0);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  /* background-color: #0005; */
+  border: 2px solid rgba(0, 0, 0, 0.8);
   padding: 10px;
   font-size: 30px;
   text-align: center;
@@ -24,12 +54,11 @@
   grid-template-columns: auto auto auto;
   text-align: center;
   background-size: auto;
-  /* background-image: url('../images/burt.jpg'); */
   background-position: center center;
   padding: 10px;
 }
 .inner-grid-item {
-  background-color: rgba(128, 128, 255, 1.0);
+  /* background-color: rgba(orange); */
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 5px;
   font-size: 30px;
@@ -38,15 +67,36 @@
 
 #choices-div {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-self: center;
+  flex-wrap: wrap;
+  align-content: stretch;
+  height: 100%;
 }
 
 .boxes {
-  background-color: green;
+  /* background-color: orange; */
+  border-radius: 2px;
+  border-color: black;
+  /* padding: 1em; */
+}
+
+#question-box {
+  background-color: #0007;
+  color: #E5E5E5;
+  width: 25em;
 }
 
 .p {
+  display: flex;
+  justify-content: left;
+  align-content: space-around;
+  border: solid;
+  border-radius: 20px;
   padding-left: 1em;
   padding-right: 1em;
+  margin-bottom: 2em;
+  width: 14em;
+  font-size: 20px;
+  /* height: 4em; */
 }
