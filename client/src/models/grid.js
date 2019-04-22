@@ -25,7 +25,7 @@ Grid.prototype.populate = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i]) {
           const box = document.querySelector(`#grid-${i}`);
-          console.log(box);
+          // console.log(box);
           box.style.opacity = '0.0';
       }
     }

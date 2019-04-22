@@ -26,6 +26,7 @@ Players.prototype.questionAnswered = function () {
   });
 
   PubSub.publish('Players:return-scores', (team1, team2));
+  this.checkGamePoints();
 };
 
 
@@ -36,11 +37,12 @@ Players.prototype.questionAnswered = function () {
 // };
 
 
-
 Players.prototype.triviaAddPoints = function () {
-  PubSub.subscribe('FormView:question-answered', (evt) => {
+  PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
     const points = this.points;
-    this.points = points + 20;
+    if (evt) {
+      this.points = points + 20;
+    }
   });
   // return points
 };
@@ -52,3 +54,14 @@ Players.prototype.imageAddPoints = function () {
   });
   // return points
 };
+
+Players.prototype.checkGamePoints = function () {
+  if (team1.points = 200) {
+    PubSub.publish('Players:game-won', 'Player one wins the game')
+  } else if (team2.points = 200) {
+    PubSub.publish('Players:game-won', 'Player two wins the game')
+  }
+};
+
+
+module.exports = Player;

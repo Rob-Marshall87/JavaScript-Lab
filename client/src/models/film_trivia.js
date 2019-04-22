@@ -44,7 +44,7 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
     const p = document.createElement('p');
     div.classList.add('boxes');
     p.classList.add('p');
-    p.textContent = `${letters[i]}: ${answers[i]}`;
+    p.textContent = answers[i];
     div.appendChild(p);
     this.answersDiv.appendChild(div);
   }
@@ -62,10 +62,56 @@ FilmTrivia.prototype.questionRandomiser = function(){
 FilmTrivia.prototype.populateQuestion = function(question) {
   const questionDiv = document.querySelector('#question-div');
   const p = document.createElement('p');
+  p.classList.add('question-paragraph');
 
   p.textContent = question;
 
   questionDiv.appendChild(p);
+};
+
+FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
+
+  const h4 = document.createElement('h4');
+
+  if (boolean) {
+    h4.textContent = `Right! Correct answer: ${correctAnswer}.`;
+    h4.classList.add('big-answer-text-green');
+  } else {
+    h4.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
+    h4.classList.add('big-answer-text-red');
+  }
+
+  questionDiv.appendChild(h4);
+};
+
+FilmTrivia.prototype.textBox = function() {
+  const choicesDiv = document.querySelector('#choices-div');
+  choicesDiv.innerHTML = '';
+
+  const form = document.createElement('form');
+  form.classList.add('form');
+
+  const textBox = document.createElement('input');
+  textBox.classList.add('text-box')
+  textBox.id = 'text-box-id';
+  textBox.placeholder = 'Take your guess!';
+
+  const input = document.createElement('input');
+  input.classList.add('input');
+  input.type = "submit";
+
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const answerText = evt.target['text-box-id'].value.toLowerCase();
+    PubSub.publish('TextBox:answer-ready', answerText);
+  });
+
+  form.appendChild(textBox);
+  form.appendChild(input);
+
+  choicesDiv.appendChild(form);
 };
 
 module.exports = FilmTrivia;
