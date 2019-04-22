@@ -114,4 +114,15 @@ FilmTrivia.prototype.textBox = function() {
   choicesDiv.appendChild(form);
 };
 
+FilmTrivia.prototype.updateScores = function(scoresArray) {
+  const scoreDivs = document.querySelectorAll('.team-score');
+
+  for (var i = 0; i < scoreDivs.length; i++) {
+    scoreDivs[i].innerHTML = '';
+    const p = document.createElement('p');
+    p.textContent = `Team ${i + 1} score: ${scoresArray[i]}`;
+    scoreDivs[i].appendChild(p);
+  }
+}  
+
 module.exports = FilmTrivia;
