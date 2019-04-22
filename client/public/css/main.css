@@ -42,12 +42,14 @@ footer {
   background-size: auto;
   background-position: center center;
 }
+
 .grid-item {
   /* background-color: rgba(128, 128, 255, 1.0); */
   border: 2px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
 }
+
 .inner-game-grid-container {
   display: grid;
   background: url(img/the_shining.jpg);
@@ -57,6 +59,8 @@ footer {
   background-size: auto;
   background-position: center center;
 }
+
+
 .inner-grid-item {
   background-color: rgba(128, 128, 255, 1.0);
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -72,6 +76,7 @@ footer {
   flex-wrap: wrap;
   align-content: stretch;
   height: 100%;
+  padding: 1em;
 }
 
 .boxes {
@@ -83,7 +88,7 @@ footer {
 
 #question-box {
   background-color: #0007;
-  color: #E5E5E5;
+  color: rgba(229, 299, 229, 1.0);
   width: 25em;
 }
 
@@ -103,31 +108,33 @@ footer {
 .question-paragraph {
   border: solid;
   border-radius: 20px;
-  border-color:
-  /* margin: 0; */
-  padding: 0;
+  margin-top: 0.5em;
 }
 
 .big-answer-text-green {
   background-color: rgba(0, 0, 0, 0.5);
   color: green;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   border: 2px;
   border-radius: 20px;
+  border-color: white;
 }
 
 .big-answer-text-red {
   background-color: rgba(0, 0, 0, 0.5);
   color: red;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   border: 2px;
   border-radius: 20px;
-  border-color:
+  border-color: white;
 }
 
 .text-box {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
   padding: 0.5em 0.5em;
   font-size: 1em;
   color: white;
@@ -141,7 +148,6 @@ footer {
 
 .form {
   background-color: black;
->>>>>>> develop
 }
 
 .team-buzzer{
