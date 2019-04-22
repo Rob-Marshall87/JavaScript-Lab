@@ -78,7 +78,7 @@ footer {
   /* background-color: orange; */
   border-radius: 2px;
   border-color: black;
-  /* padding: 1em; */
+  /* margin bottom: 4em; */
 }
 
 #question-box {
@@ -98,11 +98,13 @@ footer {
   margin-bottom: 2em;
   width: 14em;
   font-size: 20px;
-  margin: 0;
 }
 
 .question-paragraph {
-  margin: 0;
+  border: solid;
+  border-radius: 20px;
+  border-color:
+  /* margin: 0; */
   padding: 0;
 }
 
