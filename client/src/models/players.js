@@ -2,7 +2,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const RequestHelper = require('../helpers/request_helper.js');
 
 
-const Player = function {
+const Player = function () {
   this.points = 0;
 };
 
@@ -10,8 +10,9 @@ const team1 = new Player();
 const team2 = new Player();
 
 
-Players.prototype.bindEvents = function () {
+Player.prototype.bindEvents = function () {
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
+    // console.log(evt.detail);
     if (evt.detail === team1) {
       team1.questionAnswered(evt.detail);
     }else {
@@ -20,14 +21,15 @@ Players.prototype.bindEvents = function () {
   });
 };
 
-Players.prototype.questionAnswered = function () {
-  PubSub.subscribe('FormView:Inputted-answer-trivia', (evt) => {
+Player.prototype.questionAnswered = function () {
+
+  PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
     this.triviaAddPoints(evt);
   });
 
-  PubSub.subscribe('FormView:Inputted-answer-image', (evt) => {
-    this.imageAddPoints(evt);
-  });
+  // PubSub.subscribe('FilmTriviaForm:Inputted-answer-image', (evt) => {
+  //   this.imageAddPoints(evt);
+  // });
 
   PubSub.publish('Players:return-scores', (team1, team2));
   this.checkGamePoints();
@@ -41,25 +43,27 @@ Players.prototype.questionAnswered = function () {
 // };
 
 
-Players.prototype.triviaAddPoints = function () {
-  PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
-    const points = this.points;
-    if (evt) {
-      this.points = points + 20;
-    }
-  });
-  // return points
+Player.prototype.triviaAddPoints = function (evt) {
+  const points = this.points;
+  if (evt.detail) {
+    // alert('woo')
+    this.points = points + 20;
+  }else {
+    // alert('boo')
+  }
+  console.log(this.points);
+  // alert('what')
 };
 
-Players.prototype.imageAddPoints = function () {
-  PubSub.subscribe('FormView:question-answered', (evt) => {
-    const points = this.points;
-    this.points = points + 50;
-  });
-  // return points
-};
+// Player.prototype.imageAddPoints = function () {
+//   PubSub.subscribe('FormView:question-answered', (evt) => {
+//     const points = this.points;
+//     this.points = points + 50;
+//   });
+//   // return points
+// };
 
-Players.prototype.checkGamePoints = function () {
+Player.prototype.checkGamePoints = function () {
   if (team1.points = 200) {
     PubSub.publish('Players:game-won', 'Player one wins the game')
   } else if (team2.points = 200) {

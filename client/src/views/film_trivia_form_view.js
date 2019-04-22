@@ -17,12 +17,14 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     filmTrivia.populateQuestion(question);
     filmTrivia.populateAnswers(answers);
 
-    const teamBuzzer = document.querySelector('.team-buzzer');
-    console.log(teamBuzzer);
+    const teamBuzzers = document.querySelectorAll('.team-buzzer');
 
-    teamBuzzer.addEventListener('click', (evt) => {
-      this.handleClick(evt);
-    });
+     for (var i = 0; i < teamBuzzers.length; i++) {
+       teamBuzzers[i].addEventListener('click', (evt) => {
+         // alert("BUZZ!");
+         this.handleClick(evt.target.id);
+       })
+     };
 
     const correctAnswer = randomObject.correct_answer;
     this.boxes = document.querySelectorAll('.p');
@@ -45,10 +47,12 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 module.exports = FilmTriviaFormView;
 
 
-FilmTriviaFormView.prototype.handleSubmit = function (evt) {
-  evt.preventDefault();
-  const teamSelected = evt.target.id;
+FilmTriviaFormView.prototype.handleClick = function (evt) {
+  // evt.preventDefault();
+  // console.log(evt);
+  const teamSelected = evt;
+  // console.log(teamSelected);
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
 
-  evt.target.reset();
+  // evt.target.reset();
 };

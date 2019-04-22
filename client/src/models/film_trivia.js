@@ -38,7 +38,7 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
   this.answersDiv = document.querySelector('#choices-div');
 
   const letters = ["A", "B", "C", "D"];
-  console.log(answers);
+  // console.log(answers);
   for (var i = 0; i < answers.length; i++) {
     const div = document.createElement('div');
     const p = document.createElement('p');
