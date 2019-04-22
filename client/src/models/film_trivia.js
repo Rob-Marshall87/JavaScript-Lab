@@ -86,6 +86,7 @@ FilmTrivia.prototype.textBox = function() {
 
   const textBox = document.createElement('input');
   textBox.classList.add('text-box')
+  textBox.id = 'text-box-id';
   textBox.placeholder = 'Take your guess!';
 
   const input = document.createElement('input');
@@ -94,7 +95,8 @@ FilmTrivia.prototype.textBox = function() {
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    alert('SUBMITTED ANSWER GOES HERE');
+    const answerText = evt.target['text-box-id'].value.toLowerCase();
+    PubSub.publish('TextBox:answer-ready', answerText);
   });
 
   form.appendChild(textBox);
