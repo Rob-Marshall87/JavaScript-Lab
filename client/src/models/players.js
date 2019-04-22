@@ -40,7 +40,7 @@ Players.prototype.questionAnswered = function () {
 Players.prototype.triviaAddPoints = function () {
   PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
     const points = this.points;
-    if (evt === true) {
+    if (evt) {
       this.points = points + 20;
     }
   });
