@@ -95,8 +95,47 @@ footer {
   border-radius: 20px;
   padding-left: 1em;
   padding-right: 1em;
+<<<<<<< HEAD
   margin-bottom: 2em;
   width: 14em;
   font-size: 20px;
   /* height: 4em; */
+=======
+  margin: 0;
+}
+
+.question-paragraph {
+  margin: 0;
+  padding: 0;
+}
+
+.big-answer-text-green {
+  background-color: black;
+  color: green;
+  margin: 0;
+  padding: 0;
+}
+
+.big-answer-text-red {
+  background-color: black;
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
+.text-box {
+  padding: 0.5em 0.5em;
+  font-size: 1em;
+  color: white;
+  background-color: black;
+}
+
+.input {
+  background-color: white;
+  padding: 0.5em 0.5em;
+}
+
+.form {
+  background-color: black;
+>>>>>>> develop
 }
