@@ -37,11 +37,12 @@ Players.prototype.questionAnswered = function () {
 // };
 
 
-
 Players.prototype.triviaAddPoints = function () {
-  PubSub.subscribe('FormView:question-answered', (evt) => {
+  PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
     const points = this.points;
-    this.points = points + 20;
+    if (evt === true) {
+      this.points = points + 20;
+    }
   });
   // return points
 };
@@ -61,3 +62,6 @@ Players.prototype.checkGamePoints = function () {
     PubSub.publish('Players:game-won', 'Player two wins the game')
   }
 };
+
+
+module.exports = Player;
