@@ -2,6 +2,7 @@ const FilmTriviaFormView = require('./views/film_trivia_form_view.js');
 const FilmTriviaGridView = require('./views/film_trivia_grid_view.js');
 const FilmTrivia = require('./models/film_trivia.js');
 const Grid = require('./models/grid.js');
+const Player = require('./models/players.js')
 
 document.addEventListener('DOMContentLoaded', () => {
   const filmTriviaForm = document.querySelector('#question-box');
@@ -28,4 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = new Grid();
   grid.populate();
   grid.randomiser();
+  const player = new Player();
+  player.bindEvents();
 });
