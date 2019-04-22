@@ -26,6 +26,7 @@ Players.prototype.questionAnswered = function () {
   });
 
   PubSub.publish('Players:return-scores', (team1, team2));
+  this.checkGamePoints();
 };
 
 
@@ -51,4 +52,12 @@ Players.prototype.imageAddPoints = function () {
     this.points = points + 50;
   });
   // return points
+};
+
+Players.prototype.checkGamePoints = function () {
+  if (team1.points = 200) {
+    PubSub.publish('Players:game-won', 'Player one wins the game')
+  } else if (team2.points = 200) {
+    PubSub.publish('Players:game-won', 'Player two wins the game')
+  }
 };
