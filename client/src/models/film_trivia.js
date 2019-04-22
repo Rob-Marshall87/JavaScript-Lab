@@ -38,16 +38,16 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
   this.answersDiv = document.querySelector('#choices-div');
 
   const letters = ["A", "B", "C", "D"];
-  // console.log(answers);
-  for (var i = 0; i < answers.length; i++) {
+  const order = this.questionRandomiser();
+    order.forEach((index) => {
     const div = document.createElement('div');
     const p = document.createElement('p');
     div.classList.add('boxes');
     p.classList.add('p');
-    p.textContent = answers[i];
+    p.textContent = answers[index];
     div.appendChild(p);
     this.answersDiv.appendChild(div);
-  }
+  });
 };
 
 FilmTrivia.prototype.questionRandomiser = function(){
