@@ -20,9 +20,9 @@ FilmTriviaFormView.prototype.bindEvents = function () {
     const teamBuzzer = document.querySelector('.team-buzzer');
     console.log(teamBuzzer);
 
-    // teamBuzzer.addEventListener('click', (evt) => {
-    //   this.handleClick(evt);
-    // });
+    teamBuzzer.addEventListener('click', (evt) => {
+      this.handleClick(evt);
+    });
 
     const correctAnswer = randomObject.correct_answer;
     this.boxes = document.querySelectorAll('.p');
