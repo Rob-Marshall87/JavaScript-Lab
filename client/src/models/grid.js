@@ -61,7 +61,7 @@ Grid.prototype.randomiser = function() {
         //
         // }, 1000);
 
-        this.changeBox(active, active.length);
+        this.tenTimes(active, active.length, 6);
 
         // setTimeout(()=> {console.log('Banana!');}, 2500);
         // this.goColour(box, colour);
@@ -69,7 +69,15 @@ Grid.prototype.randomiser = function() {
 
 }
 
-// Grid.prototype.tenTimes = function(active, active.length)
+Grid.prototype.tenTimes = function(active, len, count){
+  this.changeBox(active, len);
+  if (count > 0) {
+    count--;
+    setTimeout(()=>{this.tenTimes(active, len, count)}, 1800);
+  }
+}
+
+
 
 Grid.prototype.changeBox =  function(active, len) {
   index =  this.randomIndex(active.length);
@@ -86,7 +94,7 @@ Grid.prototype.flash = function (times, box, colour) {
   if (times > 0) {
     setTimeout(() => {
       this.flash(--times, box, colour);
-    }, 50)
+    }, 100)
   }
 };
 Grid.prototype.goColour = function(box, colour){
