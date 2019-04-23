@@ -73,17 +73,17 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
   const questionDiv = document.querySelector('#question-div');
   questionDiv.innerHTML = '';
 
-  const h4 = document.createElement('h4');
+  const p = document.createElement('p');
 
   if (boolean) {
-    h4.textContent = `Right! Correct answer: ${correctAnswer}.`;
-    h4.classList.add('big-answer-text-green');
+    p.textContent = `Right! Correct answer: ${correctAnswer}.`;
+    p.classList.add('big-answer-text-green');
   } else {
-    h4.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
-    h4.classList.add('big-answer-text-red');
+    p.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
+    p.classList.add('big-answer-text-red');
   }
 
-  questionDiv.appendChild(h4);
+  questionDiv.appendChild(p);
 };
 
 FilmTrivia.prototype.textBox = function() {
@@ -123,6 +123,6 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
     p.textContent = `Team ${i + 1} score: ${scoresArray[i]}`;
     scoreDivs[i].appendChild(p);
   }
-}  
+}
 
 module.exports = FilmTrivia;
