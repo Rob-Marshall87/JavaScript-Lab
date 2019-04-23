@@ -42,7 +42,7 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
     order.forEach((index) => {
     const div = document.createElement('div');
     const p = document.createElement('p');
-    div.classList.add('boxes');
+    div.classList.add('choice-button');
     p.classList.add('p');
     p.textContent = answers[index];
     div.appendChild(p);
