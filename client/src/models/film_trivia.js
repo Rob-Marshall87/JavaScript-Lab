@@ -165,6 +165,7 @@ FilmTrivia.prototype.reset = function() {
   this.populateQuestion();
   this.populateAnswers();
 };
+>>>>>>> develop
 
 FilmTrivia.prototype.teamSelected = function () {
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
