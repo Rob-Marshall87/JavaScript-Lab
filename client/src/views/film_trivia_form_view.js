@@ -51,15 +51,15 @@ FilmTriviaFormView.prototype.bindEvents = function () {
   });
 };
 
-module.exports = FilmTriviaFormView;
-
-
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   // evt.preventDefault();
   // console.log(evt);
   const teamSelected = evt;
+  console.log(teamSelected);
   // console.log(teamSelected);
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
 
   // evt.target.reset();
 };
+
+module.exports = FilmTriviaFormView;

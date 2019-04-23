@@ -1,5 +1,6 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
+const Player = require('./players.js');
 
 const FilmTrivia = function (url) {
   this.url = url;
@@ -123,6 +124,6 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
     p.textContent = `Team ${i + 1} score: ${scoresArray[i]}`;
     scoreDivs[i].appendChild(p);
   }
-}  
+}
 
 module.exports = FilmTrivia;

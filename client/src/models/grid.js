@@ -42,7 +42,7 @@ Grid.prototype.randomiser = function() {
       if (this.grid[i] === false) { active.push(i) };
     }
 
-    console.log('Active:', active);
+    // console.log('Active:', active);
     // let index = 0;
     let box;
     let colour = 'rgba(128, 128, 255, 1.0)'

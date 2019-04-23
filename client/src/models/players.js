@@ -4,20 +4,13 @@ const RequestHelper = require('../helpers/request_helper.js');
 
 const Player = function () {
   this.points = 0;
+  //this.name
 };
-
-const team1 = new Player();
-const team2 = new Player();
-
 
 Player.prototype.bindEvents = function () {
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
-    // console.log(evt.detail);
-    if (evt.detail === team1) {
-      team1.questionAnswered(evt.detail);
-    }else {
-      team2.questionAnswered(evt.detail);
-    };
+    console.log(evt.detail);
+      this.questionAnswered(evt);
   });
 };
 
@@ -31,8 +24,8 @@ Player.prototype.questionAnswered = function () {
   //   this.imageAddPoints(evt);
   // });
 
-  PubSub.publish('Players:return-scores', (team1, team2));
-  this.checkGamePoints();
+  // PubSub.publish('Players:return-scores', (team1, team2));
+  // this.checkGamePoints();
 };
 
 
@@ -63,13 +56,13 @@ Player.prototype.triviaAddPoints = function (evt) {
 //   // return points
 // };
 
-Player.prototype.checkGamePoints = function () {
-  if (team1.points = 200) {
-    PubSub.publish('Players:game-won', 'Player one wins the game')
-  } else if (team2.points = 200) {
-    PubSub.publish('Players:game-won', 'Player two wins the game')
-  }
-};
+// Player.prototype.checkGamePoints = function () {
+//   if (team1.points = 200) {
+//     PubSub.publish('Players:game-won', 'Player one wins the game')
+//   } else if (team2.points = 200) {
+//     PubSub.publish('Players:game-won', 'Player two wins the game')
+//   }
+// };
 
 
 module.exports = Player;
