@@ -1,9 +1,12 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
+const Player = require('./players.js');
 
 const FilmTrivia = function (url) {
   this.url = url;
   this.request = new RequestHelper(this.url);
+  this.team1 = new Player();
+  this.team2 = new Player();
 };
 
 FilmTrivia.prototype.bindEvents = function () {
@@ -98,18 +101,37 @@ FilmTrivia.prototype.textBox = function() {
   textBox.id = 'text-box-id';
   textBox.placeholder = 'Take your guess!';
 
-  const input = document.createElement('input');
-  input.classList.add('input');
-  input.type = "submit";
+  //FOR SUBMIT BUTTON
+  // const input = document.createElement('input');
+  // input.classList.add('input');
+  // input.type = "submit";
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const answerText = evt.target['text-box-id'].value.toLowerCase();
     PubSub.publish('TextBox:answer-ready', answerText);
+
+    PubSub.subscribe('answer:correct/incorrect', (evt) => {
+      answer = evt.detail;
+
+      const choicesDiv = document.querySelector('#choices-div');
+      choicesDiv.innerHTML = '';
+      const p = document.createElement('p');
+
+      if (answer) {
+        p.textContent = `Right! Correct answer: ${answer}!`;
+      } else {
+        p.textContent = `Wrong...answer is not ${answer}.`;
+        this.reset();
+      }
+      choicesDiv.appendChild(p);
+    });
+
   });
 
   form.appendChild(textBox);
-  form.appendChild(input);
+  //FOR SUBMIT BUTTON
+  // form.appendChild(input);
 
   choicesDiv.appendChild(form);
 };
@@ -124,5 +146,19 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
     scoreDivs[i].appendChild(p);
   }
 }
+<<<<<<< HEAD
+=======
+
+FilmTrivia.prototype.reset = function() {
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
+
+  const answersDiv = document.querySelector('#choices-div');
+  answersDiv.innerHTML = '';
+
+  this.populateQuestion();
+  this.populateAnswers();
+};
+>>>>>>> develop
 
 module.exports = FilmTrivia;

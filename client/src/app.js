@@ -13,22 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
   // filmTriviaGridView.bindEvents();
 
-  // const filmTriviaGridContainer = document.querySelector('div#filmTrivia');
-  // const filmTriviaGridView = new FilmTriviaGridView(filmTriviaGridContainer);
-  // filmTriviaGridView.bindEvents();
-
-  // const url = 'http://localhost:3000/api/questions';
-  // const filmTrivia = new FilmTrivia(url);
-  // filmTrivia.bindEvents();
-  // filmTrivia.getData();
-
   const url = 'http://localhost:3000/api/questions';
   const filmTrivia = new FilmTrivia(url);
   filmTrivia.bindEvents();
   filmTrivia.getData();
+
   const grid = new Grid();
   grid.populate();
   grid.randomiser();
-  const player = new Player();
-  player.bindEvents();
 });
