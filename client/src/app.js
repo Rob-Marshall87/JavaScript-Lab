@@ -21,9 +21,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = new Grid();
   grid.populate();
   grid.randomiser();
-
-  const team1 = new Player();
-  const team2 = new Player();
-  team1.bindEvents();
-  team2.bindEvents();
 });
