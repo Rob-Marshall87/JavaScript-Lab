@@ -7,6 +7,13 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 };
 
 FilmTriviaFormView.prototype.bindEvents = function () {
+  const scoreDivs = document.querySelectorAll('.team-score');
+  for (var i = 0; i < scoreDivs.length; i++) {
+    const p = document.createElement('p');
+    p.textContent = `Team ${i + 1} score: 0`;
+    scoreDivs[i].appendChild(p);
+  }
+
   PubSub.subscribe('FilmTrivia:items-ready', (evt) => {
     this.questions = evt.detail;
     // const newQuestion = filmTrivia.newQuestion(this.questions);
@@ -21,8 +28,8 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 
      for (var i = 0; i < teamBuzzers.length; i++) {
        teamBuzzers[i].addEventListener('click', (evt) => {
-         // alert("BUZZ!");
          this.handleClick(evt.target.id);
+         filmTrivia.updateScores( [22, 34] );
        })
      };
 
