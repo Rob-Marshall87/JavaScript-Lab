@@ -29,7 +29,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
      for (var i = 0; i < teamBuzzers.length; i++) {
        teamBuzzers[i].addEventListener('click', (evt) => {
          this.handleClick(evt.target.id);
-         filmTrivia.updateScores( [22, 34] );
+         // filmTrivia.updateScores( [22, 34] );
        })
      };
 
@@ -56,10 +56,7 @@ module.exports = FilmTriviaFormView;
 
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   // evt.preventDefault();
-  // console.log(evt);
   const teamSelected = evt;
-  // console.log(teamSelected);
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
-
   // evt.target.reset();
 };
