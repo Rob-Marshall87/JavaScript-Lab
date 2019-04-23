@@ -53,11 +53,6 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   // evt.preventDefault();
   const teamSelected = evt;
-<<<<<<< HEAD
-  console.log(teamSelected);
-  // console.log(teamSelected);
-=======
->>>>>>> develop
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
   // evt.target.reset();
 };
