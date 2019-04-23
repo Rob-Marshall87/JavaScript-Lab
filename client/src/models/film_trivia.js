@@ -76,17 +76,17 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
   const questionDiv = document.querySelector('#question-div');
   questionDiv.innerHTML = '';
 
-  const h4 = document.createElement('h4');
+  const p = document.createElement('p');
 
   if (boolean) {
-    h4.textContent = `Right! Correct answer: ${correctAnswer}.`;
-    h4.classList.add('big-answer-text-green');
+    p.textContent = `Right! Correct answer: ${correctAnswer}.`;
+    p.classList.add('big-answer-text-green');
   } else {
-    h4.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
-    h4.classList.add('big-answer-text-red');
+    p.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
+    p.classList.add('big-answer-text-red');
   }
 
-  questionDiv.appendChild(h4);
+  questionDiv.appendChild(p);
 };
 
 FilmTrivia.prototype.textBox = function() {
@@ -101,6 +101,7 @@ FilmTrivia.prototype.textBox = function() {
   textBox.id = 'text-box-id';
   textBox.placeholder = 'Take your guess!';
 
+  //FOR SUBMIT BUTTON
   // const input = document.createElement('input');
   // input.classList.add('input');
   // input.type = "submit";
@@ -112,18 +113,24 @@ FilmTrivia.prototype.textBox = function() {
 
     PubSub.subscribe('answer:correct/incorrect', (evt) => {
       answer = evt.detail;
+
+      const choicesDiv = document.querySelector('#choices-div');
       choicesDiv.innerHTML = '';
-      const h2 = document.createElement('h2');
+      const p = document.createElement('p');
+
       if (answer) {
-        h2.textContent = `Right! Correct answer: ${answer}!`;
+        p.textContent = `Right! Correct answer: ${answer}!`;
       } else {
-        h2.textContent = `Wrong...answer is not ${answer}.`;
+        p.textContent = `Wrong...answer is not ${answer}.`;
+        this.reset();
       }
+      choicesDiv.appendChild(p);
     });
 
   });
 
   form.appendChild(textBox);
+  //FOR SUBMIT BUTTON
   // form.appendChild(input);
 
   choicesDiv.appendChild(form);
@@ -139,5 +146,16 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
     scoreDivs[i].appendChild(p);
   }
 }
+
+FilmTrivia.prototype.reset = function() {
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
+
+  const answersDiv = document.querySelector('#choices-div');
+  answersDiv.innerHTML = '';
+
+  this.populateQuestion();
+  this.populateAnswers();
+};
 
 module.exports = FilmTrivia;

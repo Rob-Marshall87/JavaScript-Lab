@@ -29,7 +29,6 @@ FilmTriviaFormView.prototype.bindEvents = function () {
      for (var i = 0; i < teamBuzzers.length; i++) {
        teamBuzzers[i].addEventListener('click', (evt) => {
          this.handleClick(evt.target.id);
-         // filmTrivia.updateScores( [22, 34] );
        })
      };
 
