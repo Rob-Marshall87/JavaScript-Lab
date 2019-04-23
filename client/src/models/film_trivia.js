@@ -143,27 +143,31 @@ FilmTrivia.prototype.updateScores = function(team) {
 
     this.scoreDiv.innerHTML = '';
     const p = document.createElement('p');
-    p.textContent = `Team 1 score: ${this.team1Points}`;
+    p.textContent = this.team1Points;
     this.scoreDiv.appendChild(p);
   } else {
     this.scoreDiv = document.querySelector(`#team2-score`);
 
     this.scoreDiv.innerHTML = '';
     const p = document.createElement('p');
-    p.textContent = `Team 2 score: ${this.team2Points}`;
+    p.textContent = this.team2Points;
     this.scoreDiv.appendChild(p);
   };
 };
 
-FilmTrivia.prototype.reset = function() {
+FilmTrivia.prototype.reset = function(questions) {
   const questionDiv = document.querySelector('#question-div');
   questionDiv.innerHTML = '';
 
   const answersDiv = document.querySelector('#choices-div');
   answersDiv.innerHTML = '';
 
-  this.populateQuestion();
-  this.populateAnswers();
+  const randomObject = this.newQuestion(questions);
+
+  const question = randomObject.question;
+  const answers = this.answers(randomObject);
+  this.populateQuestion(question);
+  this.populateAnswers(answers);
 };
 
 FilmTrivia.prototype.teamSelected = function () {

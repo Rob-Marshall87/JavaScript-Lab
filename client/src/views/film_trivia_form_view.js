@@ -3,6 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const FilmTriviaFormView = function(filmTriviaForm) {
   this.filmTriviaForm = filmTriviaForm;
+  this.questions = null;
   filmTrivia = new FilmTrivia;
 };
 
@@ -62,6 +63,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   const teamSelected = evt;
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
+  filmTrivia.reset(this.questions);
 };
 
 module.exports = FilmTriviaFormView;
