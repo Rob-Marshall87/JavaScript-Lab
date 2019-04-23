@@ -61,6 +61,7 @@ footer {
   text-align: center;
   background-size: auto;
   background-position: center center;
+  width: 21em;
 }
 
 
@@ -171,6 +172,10 @@ footer {
   margin-top: -1em;
 }
 
+.text-box p {
+  color: green;
+}
+
 .input {
   background-color: white;
   padding: 0.5em 0.5em;
@@ -191,4 +196,16 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#bonus-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.title-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
 }
