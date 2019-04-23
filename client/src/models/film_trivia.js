@@ -5,6 +5,8 @@ const Player = require('./players.js');
 const FilmTrivia = function (url) {
   this.url = url;
   this.request = new RequestHelper(this.url);
+  this.team1 = new Player();
+  this.team2 = new Player();
 };
 
 FilmTrivia.prototype.bindEvents = function () {

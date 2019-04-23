@@ -39,7 +39,6 @@ Player.prototype.triviaAddPoints = function (evt) {
 Player.prototype.imageAddPoints = function () {
     const points = this.points;
     this.points = points + 50;
-  });
   // return points
 };
 
