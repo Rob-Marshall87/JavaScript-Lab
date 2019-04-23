@@ -37,7 +37,7 @@ footer {
 .game-grid-container {
   display: grid;
   z-index: 9;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 7em auto 7em;
   /* background-color: #0005; */
   background-repeat: no-repeat;
   background-size: auto;
@@ -109,7 +109,7 @@ footer {
   color: rgba(229, 299, 229, 1.0);
   width: 25em;
   margin-bottom: 3em;
-
+  justify-self: center;
 }
 
 
@@ -186,6 +186,11 @@ footer {
 
 .team-buzzer{
   size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 5em;
+  height: 7em;
 }
 
 .team-buzzer:hover{
