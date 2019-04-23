@@ -23,5 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   filmTriviaGridView.bindEvents();
   // grid.populate();
   grid.bindEvents();
-  grid.startBlinking();
+  // grid.startBlinking();
+  // grid.clearGrid();
+  // grid.reset();
 });
