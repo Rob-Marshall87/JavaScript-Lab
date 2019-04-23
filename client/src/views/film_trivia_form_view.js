@@ -29,7 +29,6 @@ FilmTriviaFormView.prototype.bindEvents = function () {
      for (var i = 0; i < teamBuzzers.length; i++) {
        teamBuzzers[i].addEventListener('click', (evt) => {
          this.handleClick(evt.target.id);
-         // filmTrivia.updateScores( [22, 34] );
        })
      };
 
@@ -55,12 +54,16 @@ FilmTriviaFormView.prototype.bindEvents = function () {
   });
 };
 
-module.exports = FilmTriviaFormView;
-
-
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   // evt.preventDefault();
   const teamSelected = evt;
+<<<<<<< HEAD
+  console.log(teamSelected);
+  // console.log(teamSelected);
+=======
+>>>>>>> develop
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
   // evt.target.reset();
 };
+
+module.exports = FilmTriviaFormView;
