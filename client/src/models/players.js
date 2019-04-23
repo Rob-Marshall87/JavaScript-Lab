@@ -28,7 +28,6 @@ Player.prototype.questionAnswered = function () {
 };
 
 Player.prototype.triviaAddPoints = function (evt) {
-  const points = this.points;
   if (evt.detail) {
     this.points = points + 20;
   }else {

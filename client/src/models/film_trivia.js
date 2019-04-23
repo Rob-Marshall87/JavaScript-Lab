@@ -147,6 +147,7 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
   }
 }
 
+
 FilmTrivia.prototype.reset = function() {
   const questionDiv = document.querySelector('#question-div');
   questionDiv.innerHTML = '';
