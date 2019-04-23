@@ -5,13 +5,13 @@ const Player = require('./players.js');
 const FilmTrivia = function (url) {
   this.url = url;
   this.request = new RequestHelper(this.url);
-  this.team1 = new Player();
-  this.team2 = new Player();
+  this.buzzedTeam = null;
+  this.team1Points = null;
+  this.team2Points = null;
 };
 
 FilmTrivia.prototype.bindEvents = function () {
-  //subscribes to FilmTriviaFormView
-  //calls request.get on
+  this.teamSelected();
 };
 
 FilmTrivia.prototype.getData = function () {
@@ -136,16 +136,24 @@ FilmTrivia.prototype.textBox = function() {
   choicesDiv.appendChild(form);
 };
 
-FilmTrivia.prototype.updateScores = function(scoresArray) {
-  const scoreDivs = document.querySelectorAll('.team-score');
+FilmTrivia.prototype.updateScores = function(team) {
+  if (team.id === team1.id) {
 
-  for (var i = 0; i < scoreDivs.length; i++) {
-    scoreDivs[i].innerHTML = '';
+    this.scoreDiv = document.querySelector(`#team1-score`);
+
+    this.scoreDiv.innerHTML = '';
     const p = document.createElement('p');
-    p.textContent = `Team ${i + 1} score: ${scoresArray[i]}`;
-    scoreDivs[i].appendChild(p);
-  }
-}
+    p.textContent = `Team 1 score: ${this.team1Points}`;
+    this.scoreDiv.appendChild(p);
+  } else {
+    this.scoreDiv = document.querySelector(`#team2-score`);
+
+    this.scoreDiv.innerHTML = '';
+    const p = document.createElement('p');
+    p.textContent = `Team 2 score: ${this.team2Points}`;
+    this.scoreDiv.appendChild(p);
+  };
+};
 
 FilmTrivia.prototype.reset = function() {
   const questionDiv = document.querySelector('#question-div');
@@ -156,6 +164,25 @@ FilmTrivia.prototype.reset = function() {
 
   this.populateQuestion();
   this.populateAnswers();
+};
+
+FilmTrivia.prototype.teamSelected = function () {
+  PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
+    this.buzzedTeam = new Player(evt.detail);
+
+    PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
+      const boolean = evt.detail;
+      const points = this.buzzedTeam.triviaAddPoints(boolean);
+
+      if (this.buzzedTeam.name === team1.id) {
+        this.team1Points += points;
+        this.updateScores(team1);
+      } else {
+        this.team2Points += points;
+        this.updateScores(team2);
+      };
+    })
+  });
 };
 
 module.exports = FilmTrivia;
