@@ -7,12 +7,16 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 };
 
 FilmTriviaFormView.prototype.bindEvents = function () {
-  const scoreDivs = document.querySelectorAll('.team-score');
-  for (var i = 0; i < scoreDivs.length; i++) {
-    const p = document.createElement('p');
-    p.textContent = `Team ${i + 1} score: 0`;
-    scoreDivs[i].appendChild(p);
-  }
+  const team1ScoreDiv = document.querySelector('#team1-score');
+  const team2ScoreDiv = document.querySelector('#team2-score');
+
+    const p1 = document.createElement('p');
+    p1.textContent = `Team 1 score: 0`;
+    team1ScoreDiv.appendChild(p1);
+    const p2 = document.createElement('p');
+    p2.textContent = `Team 2 score: 0`;
+    team2ScoreDiv.appendChild(p2);
+
 
   PubSub.subscribe('FilmTrivia:items-ready', (evt) => {
     this.questions = evt.detail;
@@ -40,6 +44,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
         if (evt.target.innerText === correctAnswer) {
           PubSub.publish('FilmTriviaForm:answer', true);
           filmTrivia.bigAnswerText(correctAnswer, true);
+
           filmTrivia.textBox();
         } else {
           PubSub.publish('FilmTriviaForm:answer', false);
@@ -55,13 +60,8 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 };
 
 FilmTriviaFormView.prototype.handleClick = function (evt) {
-  // evt.preventDefault();
   const teamSelected = evt;
-  console.log(teamSelected);
-  // console.log(teamSelected);
-
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
-  // evt.target.reset();
 };
 
 module.exports = FilmTriviaFormView;

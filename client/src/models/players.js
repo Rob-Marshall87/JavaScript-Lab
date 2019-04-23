@@ -2,15 +2,15 @@ const PubSub = require('../helpers/pub_sub.js');
 const RequestHelper = require('../helpers/request_helper.js');
 
 
-const Player = function () {
+const Player = function (name) {
   this.points = 0;
-  //this.name
+  this.name = name;
 };
 
 Player.prototype.bindEvents = function () {
-  PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
-      this.questionAnswered(evt);
-  });
+  // PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
+  //     this.questionAnswered(evt);
+  // });
 };
 
 Player.prototype.questionAnswered = function () {
@@ -27,12 +27,13 @@ Player.prototype.questionAnswered = function () {
   // this.checkGamePoints();
 };
 
-Player.prototype.triviaAddPoints = function (evt) {
-  if (evt.detail) {
-    this.points = points + 20;
+Player.prototype.triviaAddPoints = function (answer) {
+  this.points = 0;
+  if (answer) {
+    this.points += 20;
   }else {
   }
-  console.log(this.points);
+  return this.points;
 };
 
 Player.prototype.imageAddPoints = function () {
