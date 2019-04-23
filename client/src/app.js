@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   filmTrivia.getData();
 
   const grid = new Grid();
-  grid.populate();
+  const filmTriviaGridView = new FilmTriviaGridView('.inner-game-grid-container');
+  filmTriviaGridView.bindEvents();
+  // grid.populate();
   grid.bindEvents();
   grid.startBlinking();
 });

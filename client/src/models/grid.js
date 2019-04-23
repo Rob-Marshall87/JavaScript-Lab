@@ -27,11 +27,17 @@ const Grid = function(){
         // this.currentFilm = this.selectRandomFilm();
         this.gameOver = false;
         this.howManyMoreBlinks = 0;
+        this.buttonPressed = false;
+        this.currentFilm;
 
 }
 
 Grid.prototype.bindEvents = function() {
-  //
+
+  this.currentFilm = this.selectRandomFilm();
+  // console.log(this.currentFilm);
+  // console.log(this.answers);
+  PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
   // PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
   //   if (evt.detail.toLowerCase() === currentFilm.film ) {
   //     this.clearGrid();
@@ -56,10 +62,11 @@ Grid.prototype.bindEvents = function() {
 //
 //   return button;
 // };
-// Grid.prototype.selectRandomFilm = function(){
-//   filmIndex = this.randomIndex(answers.length);
-//   return this.answers.splice(filmIndex, 1);
-// }
+Grid.prototype.selectRandomFilm = function(){
+  filmIndex = this.randomIndex(this.answers.length);
+  const filmRandom = this.answers.splice(filmIndex, 1);
+  return filmRandom[0];
+}
 Grid.prototype.populate = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i]) {
@@ -77,12 +84,12 @@ Grid.prototype.reset = function() {
 }
 
 Grid.prototype.startBlinking = function() {
-  this.howManyMoreBlinks = 10;
+  this.howManyMoreBlinks = 15;
   this.blinkAgainIfNeeded()
 }
 
 Grid.prototype.blinkAgainIfNeeded = function() {
-  if (  this.howManyMoreBlinks >= 0){
+  if ((this.howManyMoreBlinks >= 0 ) || (this.buttonPressed)) {
     this.howManyMoreBlinks -= 1;
     const randomActiveIndex = this.randomActiveIndex()
     const box = document.querySelector(`#grid-${randomActiveIndex}`);
