@@ -4,7 +4,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const FilmTriviaFormView = function(filmTriviaForm) {
   this.filmTriviaForm = filmTriviaForm;
   this.questions = null;
-  filmTrivia = new FilmTrivia;
+  filmTrivia = new FilmTrivia('http://localhost:3000/api/questions', this.questions);
 };
 
 FilmTriviaFormView.prototype.bindEvents = function () {
@@ -12,10 +12,10 @@ FilmTriviaFormView.prototype.bindEvents = function () {
   const team2ScoreDiv = document.querySelector('#team2-score');
 
     const p1 = document.createElement('p');
-    p1.textContent = `Team 1 score: 0`;
+    p1.textContent = 0;
     team1ScoreDiv.appendChild(p1);
     const p2 = document.createElement('p');
-    p2.textContent = `Team 2 score: 0`;
+    p2.textContent = 0;
     team2ScoreDiv.appendChild(p2);
 
 
@@ -45,11 +45,11 @@ FilmTriviaFormView.prototype.bindEvents = function () {
         if (evt.target.innerText === correctAnswer) {
           PubSub.publish('FilmTriviaForm:answer', true);
           filmTrivia.bigAnswerText(correctAnswer, true);
-
           filmTrivia.textBox();
         } else {
           PubSub.publish('FilmTriviaForm:answer', false);
           filmTrivia.bigAnswerText(correctAnswer, false);
+          filmTrivia.playAgain();
         }
       });
     };
@@ -63,7 +63,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 FilmTriviaFormView.prototype.handleClick = function (evt) {
   const teamSelected = evt;
   PubSub.publish('FilmTriviaForm:team-selected', teamSelected);
-  filmTrivia.reset(this.questions);
+  // filmTrivia.reset(this.questions);
 };
 
 module.exports = FilmTriviaFormView;

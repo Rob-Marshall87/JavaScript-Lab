@@ -8,7 +8,7 @@ const Grid = function(){
           { film:'blade runner 2049', file:'2.jpg' },
           { film:'raiders of the lost ark', file:'3.png' },
           { film:'lord of the rings', file:'4.jpg' } ,
-          { film:'inglorious bastards', file:'5.png' },
+          { film:'inglourious basterds', file:'5.png' },
           { film:'empire strikes back', file:'6.png' },
           { film:'alien', file:'7.png' },
           { film:'skyfall', file:'8.png' },
@@ -18,7 +18,7 @@ const Grid = function(){
           { film: 'psycho', file: '12.png' },
           { film: 'ghostbusters 2', file: '13.png' },
           { film: 'the truman show', file: '14.png' },
-          { film: 'kill bill volume 1', file: '15.png' },
+          { film: 'kill bill', file: '15.png' },
           { film: 'the shining', file: '16.jpg' },
           { film: 'ghostbusters', file: '17.jpg' },
           { film: 'star wars', file: '18.png' },
@@ -38,17 +38,19 @@ Grid.prototype.bindEvents = function() {
   // console.log(this.currentFilm);
   // console.log(this.answers);
   PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
-  // PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
-  //   if (evt.detail.toLowerCase() === currentFilm.film ) {
-  //     this.clearGrid();
-  //     this.gameOver = true;
-  //   }
-  // });
-  // console.log(this.currentFilm);
+  PubSub.subscribe('FilmTrivia:Question-Answered', (evt) => {
+    if (evt.detail.toLowerCase() === this.currentFilm.film ) {
+      this.clearGrid();
+      this.gameOver = true;
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: evt.detail, boolean: true})
+    } else {
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: evt.detail, boolean: false})
+    }
+  });
+
   PubSub.subscribe('finished-blink', ()=>{
     this.blinkAgainIfNeeded();
   });
-
 }
 
 // Grid.prototype.createRandomiserButton = function () {

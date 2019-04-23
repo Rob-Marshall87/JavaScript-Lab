@@ -79,14 +79,28 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
   const p = document.createElement('p');
 
   if (boolean) {
-    p.textContent = `Right! Correct answer: ${correctAnswer}.`;
+    p.textContent = `Right! Correct answer: ${correctAnswer}`;
     p.classList.add('big-answer-text-green');
   } else {
-    p.textContent = `Wrong. Correct answer: ${correctAnswer}.`;
+    p.textContent = `Wrong. Correct answer: ${correctAnswer}`;
     p.classList.add('big-answer-text-red');
   }
 
   questionDiv.appendChild(p);
+};
+
+FilmTrivia.prototype.playAgain = function () {
+  const choicesDiv = document.querySelector('#choices-div');
+  choicesDiv.innerHTML = '';
+
+  const playAgainButton = document.createElement('input');
+  playAgainButton.type = 'submit';
+  playAgainButton.value = 'New question';
+  playAgainButton.addEventListener('click', () => {
+    alert('this works!');
+  })
+  choicesDiv.appendChild(playAgainButton);
+
 };
 
 FilmTrivia.prototype.textBox = function() {
@@ -109,20 +123,38 @@ FilmTrivia.prototype.textBox = function() {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const answerText = evt.target['text-box-id'].value.toLowerCase();
-    PubSub.publish('TextBox:answer-ready', answerText);
+    PubSub.publish('FilmTrivia:Question-Answered', answerText);
 
-    PubSub.subscribe('answer:correct/incorrect', (evt) => {
+    PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
       answer = evt.detail;
 
       const choicesDiv = document.querySelector('#choices-div');
       choicesDiv.innerHTML = '';
       const p = document.createElement('p');
 
-      if (answer) {
-        p.textContent = `Right! Correct answer: ${answer}!`;
+      if (answer.boolean) {
+
+        p.textContent = `100 BONUS POINTS!`;
+
+        const questionDiv = document.querySelector('#question-div');
+        questionDiv.innerHTML = '';
+        const h1 = document.createElement('h1');
+
+        const capitalTitle = this.capitalize(answer.title);
+        h1.textContent = `${capitalTitle}`;
+        questionDiv.appendChild(h1);
+
       } else {
-        p.textContent = `Wrong...answer is not ${answer}.`;
-        this.reset();
+
+        p.textContent = `Great guess...but it's not ${answer.title}`;
+
+        const questionDiv = document.querySelector('#question-div');
+        questionDiv.innerHTML = '';
+        const h1 = document.createElement('h1');
+        h1.textContent = `Not this time...`;
+        questionDiv.appendChild(h1);
+
+        // this.reset();
       }
       choicesDiv.appendChild(p);
     });
@@ -134,6 +166,14 @@ FilmTrivia.prototype.textBox = function() {
   // form.appendChild(input);
 
   choicesDiv.appendChild(form);
+};
+
+FilmTrivia.prototype.capitalize = function(str) {
+   const splitStr = str.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+   }
+   return splitStr.join(' ');
 };
 
 FilmTrivia.prototype.updateScores = function(team) {
@@ -168,6 +208,22 @@ FilmTrivia.prototype.reset = function(questions) {
   const answers = this.answers(randomObject);
   this.populateQuestion(question);
   this.populateAnswers(answers);
+
+  const correctAnswer = randomObject.correct_answer;
+  this.boxes = document.querySelectorAll('.p');
+
+  for (var i = 0; i < this.boxes.length; i++) {
+    this.boxes[i].addEventListener('click', (evt) => {
+      if (evt.target.innerText === correctAnswer) {
+        PubSub.publish('FilmTriviaForm:answer', true);
+        filmTrivia.bigAnswerText(correctAnswer, true);
+        filmTrivia.textBox();
+      } else {
+        PubSub.publish('FilmTriviaForm:answer', false);
+        filmTrivia.bigAnswerText(correctAnswer, false);
+      }
+    });
+  };
 };
 
 FilmTrivia.prototype.teamSelected = function () {
@@ -175,6 +231,7 @@ FilmTrivia.prototype.teamSelected = function () {
     this.buzzedTeam = new Player(evt.detail);
 
     PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
+
       const boolean = evt.detail;
       const points = this.buzzedTeam.triviaAddPoints(boolean);
 
