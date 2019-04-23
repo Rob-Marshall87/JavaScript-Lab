@@ -20,5 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const grid = new Grid();
   grid.populate();
-  grid.randomiser();
+  grid.bindEvents();
+  grid.startBlinking();
 });
