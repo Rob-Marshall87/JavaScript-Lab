@@ -44,14 +44,13 @@ Player.prototype.questionAnswered = function () {
 
 
 Player.prototype.triviaAddPoints = function (evt) {
-  const points = this.points;
   if (evt.detail) {
     // alert('woo')
-    this.points = points + 20;
+    this.points += 20;
   }else {
     // alert('boo')
+    this.points -= 20;
   }
-  console.log(this.points);
   // alert('what')
 };
 

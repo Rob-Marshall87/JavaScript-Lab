@@ -42,6 +42,10 @@ FilmTriviaFormView.prototype.bindEvents = function () {
       });
     };
   });
+  PubSub.subscribe('Players:return-scores', (team1, team2) => {
+    console.log(team1.detail);
+    console.log(team2.detail);
+  });
 };
 
 module.exports = FilmTriviaFormView;

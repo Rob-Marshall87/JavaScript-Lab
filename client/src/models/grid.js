@@ -47,24 +47,9 @@ Grid.prototype.randomiser = function() {
     let box;
     let colour = 'rgba(128, 128, 255, 1.0)'
 
-      // for (let x = 0; x < 20; x++){
-        index =  this.randomIndex(active.length);
-        // box = document.querySelector(`#grid-${active[index]}`);
-        // (colour === 'red') ? colour = 'rgba(128, 128, 255, 1.0)': colour = 'red';
-        // setInterval(this.goColour(box, 'red'),500);
-        //
-        // setInterval(this.goColour(box, 'rgba(128, 128, 255, 1.0)'),500);
+    index =  this.randomIndex(active.length);
+    this.tenTimes(active, active.length, 6).then(console.log(index));
 
-        // const interval = setInterval(() => {
-        //   colour = (colour === 'red') ? 'rgba(128, 128, 255, 1.0)' : 'red';
-        //   this.goColour(box, colour);
-        //
-        // }, 1000);
-
-        this.tenTimes(active, active.length, 6);
-
-        // setTimeout(()=> {console.log('Banana!');}, 2500);
-        // this.goColour(box, colour);
 
 
 }
