@@ -24,20 +24,25 @@ const Grid = function(){
           { film: 'star wars', file: '18.png' },
           { film: 'lord of the rings', file: '19.png' }
         ],
-        this.currentFilm = this.selectRandomFilm();
+        // this.currentFilm = this.selectRandomFilm();
         this.gameOver = false;
+        this.howManyMoreBlinks = 0;
 
 }
 
 Grid.prototype.bindEvents = function() {
-
-  PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
-    if (evt.detail.toLowerCase() === currentFilm.film ) {
-      this.clearGrid();
-      this.gameOver = true;
-    }
+  //
+  // PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
+  //   if (evt.detail.toLowerCase() === currentFilm.film ) {
+  //     this.clearGrid();
+  //     this.gameOver = true;
+  //   }
+  // });
+  // console.log(this.currentFilm);
+  PubSub.subscribe('finished-blink', ()=>{
+    this.blinkAgainIfNeeded();
   });
-  console.log(this.currentFilm);
+
 }
 
 // Grid.prototype.createRandomiserButton = function () {
@@ -51,10 +56,10 @@ Grid.prototype.bindEvents = function() {
 //
 //   return button;
 // };
-Grid.prototype.selectRandomFilm = function(){
-  filmIndex = this.randomIndex(answers.length);
-  return this.answers.splice(filmIndex, 1);
-}
+// Grid.prototype.selectRandomFilm = function(){
+//   filmIndex = this.randomIndex(answers.length);
+//   return this.answers.splice(filmIndex, 1);
+// }
 Grid.prototype.populate = function() {
     for (i = 0; i < 9; i++) {
       if (this.grid[i]) {
@@ -70,20 +75,46 @@ Grid.prototype.reset = function() {
     }
     this.populate();
 }
-Grid.prototype.randomiser = function() {
-    const active = [];
-    for (i = 0; i < 9; i++) {
-      if (this.grid[i] === false) { active.push(i) };
-    }
 
-    // console.log('Active:', active);
-    // let index = 0;
-    let box;
-    let colour = 'rgba(128, 128, 255, 1.0)'
-
-    index =  this.randomIndex(active.length);
-    this.tenTimes(active, active.length, 6);
+Grid.prototype.startBlinking = function() {
+  this.howManyMoreBlinks = 10;
+  this.blinkAgainIfNeeded()
 }
+
+Grid.prototype.blinkAgainIfNeeded = function() {
+  if (  this.howManyMoreBlinks >= 0){
+    const randomActiveIndex = this.randomActiveIndex()
+    const box = document.querySelector(`#grid-${randomActiveIndex}`);
+    this.blinkAgain(box);
+  }else{
+    //TODO: remove the box at randomActiveIndex and re-render
+  }
+}
+
+Grid.prototype.blinkAgain = function(box){
+  this.howManyMoreBlinks -= 1;
+  this.goColour(box, 'yellow');
+  setTimeout(()=>{
+    this.goColour(box, '');
+    PubSub.publish('finished-blink');
+  }, 200);
+}
+
+
+// Grid.prototype.randomiser = function() {
+//     const active = [];
+//     for (i = 0; i < 9; i++) {
+//       if (this.grid[i] === false) { active.push(i) };
+//     }
+//
+//     // console.log('Active:', active);
+//     // let index = 0;
+//     let box;
+//     let colour = 'rgba(128, 128, 255, 1.0)'
+//
+//     // const index =  this.randomIndex(active.length);
+//     this.tenTimes(active, active.length, 6);
+// }
 Grid.prototype.clearGrid = function() {
   for (let i = 0; i < 9; i++) {
         const box = document.querySelector(`#grid-${i}`);
@@ -102,7 +133,7 @@ Grid.prototype.tenTimes = function(active, len, count){
 
 
 Grid.prototype.changeBox =  function(active, len) {
-  index =  this.randomIndex(active.length);
+  const index =  this.randomIndex(active.length);
   const box = document.querySelector(`#grid-${active[index]}`);
   this.flash(6, box, 'red');
   if (len > 0) {
@@ -110,6 +141,7 @@ Grid.prototype.changeBox =  function(active, len) {
     setTimeout(()=>{this.changeBox(active, len)}, 300);
   }
 }
+
 Grid.prototype.flash = function (times, box, colour) {
   colour = (colour === 'red') ? 'rgba(128, 128, 255, 1.0)' : 'red';
   this.goColour(box, colour);
@@ -119,13 +151,29 @@ Grid.prototype.flash = function (times, box, colour) {
     }, 100)
   }
 };
+
+Grid.prototype.randomActiveIndex = function() {
+  //cleanup actives:
+  // [true, false,false, true,false...]
+  const justActiveIndexesWithUndefines = this.grid.map((item, index) => {
+    return (item === true)? undefined : index ;
+  })
+  // [undefined, 1, 2, undefined, 4]
+  const justActiveIndexes = justActiveIndexesWithUndefines.filter((undefOrIndex) => {return undefOrIndex !== undefined; })
+  // [1,2,4]
+  return randomActiveIndex = this.randomObjectInArray(justActiveIndexes)
+}
+
 Grid.prototype.goColour = function(box, colour){
   box.style.backgroundColor = colour;
 };
 Grid.prototype.randomIndex = function(number){
   return Math.floor(Math.random() * (number));
 }
-
+Grid.prototype.randomObjectInArray = function(array){
+  const index = Math.floor(Math.random() * (array.length));
+  return array[index];
+}
 // Grid.prototype.flash = function(box, colour){
 //   box.style.backgroundColor = colour;
 // }

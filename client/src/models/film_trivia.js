@@ -146,8 +146,7 @@ FilmTrivia.prototype.updateScores = function(scoresArray) {
     scoreDivs[i].appendChild(p);
   }
 }
-<<<<<<< HEAD
-=======
+
 
 FilmTrivia.prototype.reset = function() {
   const questionDiv = document.querySelector('#question-div');
@@ -159,6 +158,5 @@ FilmTrivia.prototype.reset = function() {
   this.populateQuestion();
   this.populateAnswers();
 };
->>>>>>> develop
 
 module.exports = FilmTrivia;

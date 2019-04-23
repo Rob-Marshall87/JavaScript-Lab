@@ -29,20 +29,10 @@ Player.prototype.questionAnswered = function () {
 
 Player.prototype.triviaAddPoints = function (evt) {
   if (evt.detail) {
-<<<<<<< HEAD
-    // alert('woo')
-    this.points += 20;
-  }else {
-    // alert('boo')
-    this.points -= 20;
-  }
-  // alert('what')
-=======
     this.points = points + 20;
   }else {
   }
   console.log(this.points);
->>>>>>> develop
 };
 
 Player.prototype.imageAddPoints = function () {
