@@ -38,20 +38,35 @@ Grid.prototype.bindEvents = function() {
   // console.log(this.currentFilm);
   // console.log(this.answers);
   PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
-  PubSub.subscribe('FilmTrivia:Question-Answered', (evt) => {
-    if (evt.detail.toLowerCase() === this.currentFilm.film ) {
-      this.clearGrid();
-      this.gameOver = true;
-      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: evt.detail, boolean: true})
-    } else {
-      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: evt.detail, boolean: false})
-    }
-  });
-
+  // console.log(this.currentFilm.film);
+  // PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
+  //   if (evt.detail.toLowerCase() === currentFilm.film ) {
+  //     this.clearGrid();
+  //     this.gameOver = true;
+  //   }
+  // });
+  // console.log(this.currentFilm);
   PubSub.subscribe('finished-blink', ()=>{
     this.blinkAgainIfNeeded();
   });
+  PubSub.subscribe('FilmTrivia:Answer', (evt)=> {
+    if (evt.detail.toLowerCase() === this.currentFilm.film) {
+      this.clearGrid();
+      return true
+    }
+    else {
+      return false
+    }
+  });
+  PubSub.subscribe('FilmTrivia:NextRound', ()=> {
+    this.reset();
+    this.currentFilm = this.selectRandomFilm();
+    PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
+  });
+
 }
+
+
 
 // Grid.prototype.createRandomiserButton = function () {
 //   const button = document.createElement('button');
@@ -70,14 +85,17 @@ Grid.prototype.selectRandomFilm = function(){
   return filmRandom[0];
 }
 Grid.prototype.populate = function() {
-    for (i = 0; i < 9; i++) {
-      if (this.grid[i]) {
-          const box = document.querySelector(`#grid-${i}`);
-          // console.log(box);
-          box.style.opacity = '0.0';
-      }
+    for (let i = 0; i < 9; i++) {
+      const box = document.querySelector(`#grid-${i}`);
+      (this.grid[i]) ? box.style.opacity = '0.0' : box.style.opacity = '1.0'
     }
 }
+// Grid.prototype.dePopulate = function() {
+//     for (i = 0; i < 9; i++) {
+//           const box = document.querySelector(`#grid-${i}`);
+//           box.style.opacity = '1.0';
+//     }
+// }
 Grid.prototype.reset = function() {
     for (let i = 0; i < 9; i++) {
       this.grid[i] = false;
