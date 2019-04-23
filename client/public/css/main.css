@@ -21,6 +21,7 @@ body {
   position: relative;
   min-height:100%;
   z-index: 5;
+  font-family: Verdana, Arial, sans-serif;
 }
 
 footer {
@@ -41,13 +42,17 @@ footer {
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center center;
+  font-size: 30px;
+  text-align: center;
 }
+
 .grid-item {
   /* background-color: rgba(128, 128, 255, 1.0); */
   border: 2px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
 }
+
 .inner-game-grid-container {
   display: grid;
   background: url(img/the_shining.jpg);
@@ -57,7 +62,12 @@ footer {
   background-size: auto;
   background-position: center center;
 }
+
+
 .inner-grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: rgba(128, 128, 255, 1.0);
   border: 1px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
@@ -72,62 +82,68 @@ footer {
   flex-wrap: wrap;
   align-content: stretch;
   height: 100%;
+  /* padding: 1em; */
 }
 
-.boxes {
-  /* background-color: orange; */
-  border-radius: 2px;
+.choice-button {
+  background-color: orange;
   border-color: black;
-  /* margin bottom: 4em; */
-}
-
-#question-box {
-  background-color: #0007;
-  color: #E5E5E5;
-  width: 25em;
-}
-
-.p {
+  width: calc(47% - 1em);
   display: flex;
   justify-content: left;
   align-content: space-around;
   border: solid;
   border-radius: 20px;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-bottom: 2em;
-  width: 14em;
+  margin-bottom: 1em;
+  padding: 0.2em;
+}
+
+.choice-button p {
   font-size: 20px;
 }
+
+
+#question-box {
+  background-color: #0007;
+  color: rgba(229, 299, 229, 1.0);
+  width: 25em;
+}
+
 
 .question-paragraph {
   border: solid;
   border-radius: 20px;
-  border-color:
-  /* margin: 0; */
-  padding: 0;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  line-height: 1.3;
+  font-size: 23px;
+  font-weight: 600;
 }
 
 .big-answer-text-green {
   background-color: rgba(0, 0, 0, 0.5);
   color: green;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   border: 2px;
   border-radius: 20px;
+  border-color: white;
 }
 
 .big-answer-text-red {
   background-color: rgba(0, 0, 0, 0.5);
   color: red;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   border: 2px;
   border-radius: 20px;
-  border-color:
+  border-color: white;
 }
 
 .text-box {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
   padding: 0.5em 0.5em;
   font-size: 1em;
   color: white;
@@ -141,9 +157,12 @@ footer {
 
 .form {
   background-color: black;
->>>>>>> develop
 }
 
 .team-buzzer{
   size: 2em;
+}
+
+.team-buzzer:hover{
+  opacity: 0.7;
 }

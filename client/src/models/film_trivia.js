@@ -42,7 +42,7 @@ FilmTrivia.prototype.populateAnswers = function(answers) {
     order.forEach((index) => {
     const div = document.createElement('div');
     const p = document.createElement('p');
-    div.classList.add('boxes');
+    div.classList.add('choice-button');
     p.classList.add('p');
     p.textContent = answers[index];
     div.appendChild(p);
@@ -98,20 +98,43 @@ FilmTrivia.prototype.textBox = function() {
   textBox.id = 'text-box-id';
   textBox.placeholder = 'Take your guess!';
 
-  const input = document.createElement('input');
-  input.classList.add('input');
-  input.type = "submit";
+  // const input = document.createElement('input');
+  // input.classList.add('input');
+  // input.type = "submit";
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const answerText = evt.target['text-box-id'].value.toLowerCase();
     PubSub.publish('TextBox:answer-ready', answerText);
+
+    PubSub.subscribe('answer:correct/incorrect', (evt) => {
+      answer = evt.detail;
+      choicesDiv.innerHTML = '';
+      const h2 = document.createElement('h2');
+      if (answer) {
+        h2.textContent = `Right! Correct answer: ${answer}!`;
+      } else {
+        h2.textContent = `Wrong...answer is not ${answer}.`;
+      }
+    });
+
   });
 
   form.appendChild(textBox);
-  form.appendChild(input);
+  // form.appendChild(input);
 
   choicesDiv.appendChild(form);
 };
+
+FilmTrivia.prototype.updateScores = function(scoresArray) {
+  const scoreDivs = document.querySelectorAll('.team-score');
+
+  for (var i = 0; i < scoreDivs.length; i++) {
+    scoreDivs[i].innerHTML = '';
+    const p = document.createElement('p');
+    p.textContent = `Team ${i + 1} score: ${scoresArray[i]}`;
+    scoreDivs[i].appendChild(p);
+  }
+}
 
 module.exports = FilmTrivia;
