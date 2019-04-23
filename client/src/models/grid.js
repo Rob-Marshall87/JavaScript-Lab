@@ -1,8 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Grid = function(){
-  this.grid = [true, false, false,
-               false, true, false,
-               false, false, true];
+  this.grid = [false, false, false,
+               false, false, false,
+               false, false, false];
   this.answers = [{film:'seven', file: '0.png' },
           { film: 'pulp fiction', file:'1.png' },
           { film:'blade runner 2049', file:'2.jpg' },
@@ -83,16 +83,16 @@ Grid.prototype.startBlinking = function() {
 
 Grid.prototype.blinkAgainIfNeeded = function() {
   if (  this.howManyMoreBlinks >= 0){
+    this.howManyMoreBlinks -= 1;
     const randomActiveIndex = this.randomActiveIndex()
     const box = document.querySelector(`#grid-${randomActiveIndex}`);
     this.blinkAgain(box);
   }else{
-    //TODO: remove the box at randomActiveIndex and re-render
+    this.removeBox(randomActiveIndex)
   }
 }
 
 Grid.prototype.blinkAgain = function(box){
-  this.howManyMoreBlinks -= 1;
   this.goColour(box, 'yellow');
   setTimeout(()=>{
     this.goColour(box, '');
@@ -100,6 +100,10 @@ Grid.prototype.blinkAgain = function(box){
   }, 200);
 }
 
+Grid.prototype.removeBox = function(index){
+  this.grid[index] = true;
+  this.populate();
+}
 
 // Grid.prototype.randomiser = function() {
 //     const active = [];
