@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const team1 = new Player();
   const team2 = new Player();
-  console.log(team1);
   team1.bindEvents();
   team2.bindEvents();
 });
