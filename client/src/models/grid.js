@@ -8,7 +8,7 @@ const Grid = function(){
           { film:'blade runner 2049', file:'2.jpg' },
           { film:'raiders of the lost ark', file:'3.png' },
           { film:'lord of the rings', file:'4.jpg' } ,
-          { film:'inglorious bastards', file:'5.png' },
+          { film:'inglourious basterds', file:'5.png' },
           { film:'empire strikes back', file:'6.png' },
           { film:'alien', file:'7.png' },
           { film:'skyfall', file:'8.png' },
@@ -18,7 +18,7 @@ const Grid = function(){
           { film: 'psycho', file: '12.png' },
           { film: 'ghostbusters 2', file: '13.png' },
           { film: 'the truman show', file: '14.png' },
-          { film: 'kill bill volume 1', file: '15.png' },
+          { film: 'kill bill', file: '15.png' },
           { film: 'the shining', file: '16.jpg' },
           { film: 'ghostbusters', file: '17.jpg' },
           { film: 'star wars', file: '18.png' },
@@ -27,11 +27,18 @@ const Grid = function(){
         // this.currentFilm = this.selectRandomFilm();
         this.gameOver = false;
         this.howManyMoreBlinks = 0;
+        this.buttonPressed = false;
+        this.currentFilm;
 
 }
 
 Grid.prototype.bindEvents = function() {
-  //
+
+  this.currentFilm = this.selectRandomFilm();
+  // console.log(this.currentFilm);
+  // console.log(this.answers);
+  PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
+  // console.log(this.currentFilm.film);
   // PubSub.subscribe('FilmTrivia: Question-Answered', (evt) => {
   //   if (evt.detail.toLowerCase() === currentFilm.film ) {
   //     this.clearGrid();
@@ -42,8 +49,28 @@ Grid.prototype.bindEvents = function() {
   PubSub.subscribe('finished-blink', ()=>{
     this.blinkAgainIfNeeded();
   });
+  PubSub.subscribe('FilmTrivia:Question-Answered', (evt)=> {
+    const title = evt.detail.toLowerCase();
+    if (title === this.currentFilm.film) {
+      this.clearGrid();
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: true});
+    }
+    else {
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: false});
+    };
 
+  });
+  PubSub.subscribe('FilmTrivia:NextRound', ()=> {
+    this.reset();
+    this.currentFilm = this.selectRandomFilm();
+    PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
+  });
+  PubSub.subscribe('FilmTrivia:TriggerRandomiser', () => {
+    this.startBlinking();
+  });
 }
+
+
 
 // Grid.prototype.createRandomiserButton = function () {
 //   const button = document.createElement('button');
@@ -56,19 +83,23 @@ Grid.prototype.bindEvents = function() {
 //
 //   return button;
 // };
-// Grid.prototype.selectRandomFilm = function(){
-//   filmIndex = this.randomIndex(answers.length);
-//   return this.answers.splice(filmIndex, 1);
-// }
+Grid.prototype.selectRandomFilm = function(){
+  filmIndex = this.randomIndex(this.answers.length);
+  const filmRandom = this.answers.splice(filmIndex, 1);
+  return filmRandom[0];
+}
 Grid.prototype.populate = function() {
-    for (i = 0; i < 9; i++) {
-      if (this.grid[i]) {
-          const box = document.querySelector(`#grid-${i}`);
-          // console.log(box);
-          box.style.opacity = '0.0';
-      }
+    for (let i = 0; i < 9; i++) {
+      const box = document.querySelector(`#grid-${i}`);
+      (this.grid[i]) ? box.style.opacity = '0.0' : box.style.opacity = '1.0'
     }
 }
+// Grid.prototype.dePopulate = function() {
+//     for (i = 0; i < 9; i++) {
+//           const box = document.querySelector(`#grid-${i}`);
+//           box.style.opacity = '1.0';
+//     }
+// }
 Grid.prototype.reset = function() {
     for (let i = 0; i < 9; i++) {
       this.grid[i] = false;
@@ -76,13 +107,16 @@ Grid.prototype.reset = function() {
     this.populate();
 }
 
+
+
+
 Grid.prototype.startBlinking = function() {
-  this.howManyMoreBlinks = 10;
+  this.howManyMoreBlinks = 15;
   this.blinkAgainIfNeeded()
 }
 
 Grid.prototype.blinkAgainIfNeeded = function() {
-  if (  this.howManyMoreBlinks >= 0){
+  if ((this.howManyMoreBlinks >= 0 ) || (this.buttonPressed)) {
     this.howManyMoreBlinks -= 1;
     const randomActiveIndex = this.randomActiveIndex()
     const box = document.querySelector(`#grid-${randomActiveIndex}`);
