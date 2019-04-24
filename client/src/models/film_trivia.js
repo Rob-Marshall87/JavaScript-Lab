@@ -238,6 +238,7 @@ FilmTrivia.prototype.teamSelected = function () {
       if (this.buzzedTeam.name === team1.id) {
         this.team1Points += points;
         this.updateScores(team1);
+        PubSub.publish('FilmTrivia:TriggerRandomiser')
       } else {
         this.team2Points += points;
         this.updateScores(team2);

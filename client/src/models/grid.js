@@ -52,10 +52,12 @@ Grid.prototype.bindEvents = function() {
   PubSub.subscribe('FilmTrivia:Answer', (evt)=> {
     if (evt.detail.toLowerCase() === this.currentFilm.film) {
       this.clearGrid();
-      return true
+      return true;
+      PubSub.publish('Grid:ImageAnswer', true);
     }
     else {
-      return false
+      return false;
+      PubSub.publish('Grid:ImageAnswer', false);
     }
   });
   PubSub.subscribe('FilmTrivia:NextRound', ()=> {
@@ -102,6 +104,9 @@ Grid.prototype.reset = function() {
     }
     this.populate();
 }
+
+
+
 
 Grid.prototype.startBlinking = function() {
   this.howManyMoreBlinks = 15;

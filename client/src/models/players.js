@@ -36,10 +36,13 @@ Player.prototype.triviaAddPoints = function (answer) {
   return this.points;
 };
 
-Player.prototype.imageAddPoints = function () {
-    const points = this.points;
-    this.points = points + 50;
-  // return points
+Player.prototype.imageAddPoints = function (answer) {
+  this.points = 0;
+  if (answer) {
+    this.points += 100;
+  }else {
+  }
+  return this.points;
 };
 
 module.exports = Player;
