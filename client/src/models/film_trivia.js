@@ -93,6 +93,8 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
 };
 
 FilmTrivia.prototype.playAgain = function () {
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
   const choicesDiv = document.querySelector('#choices-div');
   choicesDiv.innerHTML = '';
 
@@ -263,11 +265,11 @@ FilmTrivia.prototype.teamSelected = function () {
       const answeredCorrectly = evt.detail.boolean;
     if (answeredCorrectly) {
       if (this.buzzedTeam === 'team1') {
-        (this.gridTriggered) ? this.team1Points += 0 : this.team1Points += 50;
+        (this.gridTriggered) ? this.team1Points += 0 : this.team1Points += 100;
         this.updateScores(team1);
         this.gridTriggered = true;
       } else {
-        (this.gridTriggered) ? this.team2Points += 0 : this.team2Points += 50;
+        (this.gridTriggered) ? this.team2Points += 0 : this.team2Points += 100;
         this.updateScores(team2);
         this.gridTriggered = true;
       };
