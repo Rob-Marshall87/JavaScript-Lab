@@ -9,6 +9,8 @@ const FilmTrivia = function (url) {
   this.buzzedTeam = null;
   this.team1Points = null;
   this.team2Points = null;
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
 };
 
 FilmTrivia.prototype.bindEvents = function () {
@@ -231,6 +233,8 @@ FilmTrivia.prototype.reset = function(questions) {
 };
 
 FilmTrivia.prototype.teamSelected = function () {
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
     this.buzzedTeam = evt.detail;
     PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
@@ -238,12 +242,14 @@ FilmTrivia.prototype.teamSelected = function () {
     const answeredCorrectly = evt.detail;
     if (answeredCorrectly) {
       if (this.buzzedTeam === 'team1') {
-        this.team1Points += 20;
+        (this.triviaTriggered) ? this.team1Points += 0 : this.team1Points += 20;
         this.updateScores(team1);
+        this.triviaTriggered = true;
         PubSub.publish('FilmTrivia:TriggerRandomiser')
       } else {
-        this.team2Points += 20;
+        (this.triviaTriggered) ? this.team2Points += 0 : this.team2Points += 20;
         this.updateScores(team2);
+        this.triviaTriggered = true;
         PubSub.publish('FilmTrivia:TriggerRandomiser')
       };
     }
@@ -257,11 +263,13 @@ FilmTrivia.prototype.teamSelected = function () {
       const answeredCorrectly = evt.detail.boolean;
     if (answeredCorrectly) {
       if (this.buzzedTeam === 'team1') {
-        this.team1Points += 50;
+        (this.gridTriggered) ? this.team1Points += 0 : this.team1Points += 50;
         this.updateScores(team1);
+        this.gridTriggered = true;
       } else {
-        this.team2Points += 50;
+        (this.gridTriggered) ? this.team2Points += 0 : this.team2Points += 50;
         this.updateScores(team2);
+        this.gridTriggered = true;
       };
     }
     else
