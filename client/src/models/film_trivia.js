@@ -125,6 +125,8 @@ FilmTrivia.prototype.textBox = function() {
     const answerText = evt.target['text-box-id'].value.toLowerCase();
     PubSub.publish('FilmTrivia:Question-Answered', answerText);
 
+
+//This bit of code needs to be activated
     PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
       answer = evt.detail;
 
