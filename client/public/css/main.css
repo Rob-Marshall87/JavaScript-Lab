@@ -14,7 +14,8 @@ header {
   position: relative;
   min-height:100%;
   margin-bottom: 1.2em;
-  padding: 0.7em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
 }
 
 body {
@@ -31,14 +32,11 @@ footer {
   width: 100%;
   position: absolute;
   left: 0px;
-  padding-right: 3em;
+  /* padding-right: 1.2em; */
   /* bottom: 0px; */
   margin-top: 1.5em;
 }
 
-submit {
-
-}
 
 .game-grid-container {
   display: grid;
@@ -292,4 +290,15 @@ submit {
 
 .team-score{
   color: white;
+}
+
+.new-question {
+  background-color: rgba(223, 179, 51, 0.2);
+  border: solid;
+  border-radius: 20px;
+  padding: 0.5em;
+  line-height: 1.3;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: rgba(229, 299, 229, 1.0);
 }
