@@ -37,7 +37,7 @@ Player.prototype.triviaAddPoints = function (answer) {
 Player.prototype.imageAddPoints = function (answer) {
   this.points = 0;
   if (answer) {
-    this.points += 100;
+    this.points += 50;
   }else {
   }
   return this.points;

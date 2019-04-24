@@ -246,6 +246,21 @@ FilmTrivia.prototype.teamSelected = function () {
         this.updateScores(team2);
       };
     })
+
+    PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
+
+      const boolean = evt.detail.boolean;
+      const points = this.buzzedTeam.imageAddPoints(boolean);
+
+      if (this.buzzedTeam.name === team1.id) {
+        this.team1Points += points;
+        this.updateScores(team1);
+      } else {
+        this.team2Points += points;
+        this.updateScores(team2);
+      };
+    })
+
   });
 };
 
