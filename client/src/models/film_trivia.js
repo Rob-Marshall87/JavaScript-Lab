@@ -1,6 +1,7 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
 const Player = require('./players.js');
+const FilmTriviaFormView = require('../views/film_trivia_form_view.js');
 
 const FilmTrivia = function (url) {
   this.url = url;
@@ -17,7 +18,7 @@ FilmTrivia.prototype.bindEvents = function () {
 FilmTrivia.prototype.getData = function () {
   this.request.get()
     .then( (items) => {
-      PubSub.publish('FilmTrivia:items-ready', items);
+      PubSub.publish('FilmTrivia:items-ready', items); //ask
     })
     .catch(console.error);
 };
@@ -97,7 +98,7 @@ FilmTrivia.prototype.playAgain = function () {
   playAgainButton.type = 'submit';
   playAgainButton.value = 'New question';
   playAgainButton.addEventListener('click', () => {
-    alert('this works!');
+    PubSub.publish('FilmTrivia:reset');
   })
   choicesDiv.appendChild(playAgainButton);
 
@@ -157,7 +158,13 @@ FilmTrivia.prototype.textBox = function() {
         h1.textContent = `Not this time...`;
         questionDiv.appendChild(h1);
 
-        // this.reset();
+        const playAgainButton = document.createElement('input');
+        playAgainButton.type = 'submit';
+        playAgainButton.value = 'New question';
+        playAgainButton.addEventListener('click', () => {
+          PubSub.publish('FilmTrivia:reset');
+        })
+        choicesDiv.appendChild(playAgainButton);
       }
       choicesDiv.appendChild(p);
     });
@@ -199,6 +206,7 @@ FilmTrivia.prototype.updateScores = function(team) {
 };
 
 FilmTrivia.prototype.reset = function(questions) {
+
   const questionDiv = document.querySelector('#question-div');
   questionDiv.innerHTML = '';
 
@@ -206,6 +214,7 @@ FilmTrivia.prototype.reset = function(questions) {
   answersDiv.innerHTML = '';
 
   const randomObject = this.newQuestion(questions);
+  console.log(randomObject);
 
   const question = randomObject.question;
   const answers = this.answers(randomObject);
