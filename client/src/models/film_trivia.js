@@ -182,6 +182,7 @@ FilmTrivia.prototype.capitalize = function(str) {
 };
 
 FilmTrivia.prototype.updateScores = function(team) {
+  console.log(team);
   if (team.id === team1.id) {
 
     this.scoreDiv = document.querySelector(`#team1-score`);

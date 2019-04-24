@@ -11,7 +11,9 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 FilmTriviaFormView.prototype.bindEvents = function () {
   const startButton = document.querySelector('#game-start');
   startButton.addEventListener('click', () => {
+    PubSub.publish('FilmTrivia:NextRound'); 
     filmTrivia.reset(this.questions);
+
   });
 
   const team1ScoreDiv = document.querySelector('#team1-score');
