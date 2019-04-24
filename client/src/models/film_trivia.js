@@ -155,11 +155,10 @@ FilmTrivia.prototype.textBox = function() {
         const h1 = document.createElement('h1');
         h1.textContent = `Not this time...`;
         questionDiv.appendChild(h1);
-
-        this.playAgain();
       }
       choicesDiv.appendChild(p);
     });
+    // this.playAgain();
 
   });
 
@@ -224,7 +223,7 @@ FilmTrivia.prototype.reset = function(questions) {
       } else {
         PubSub.publish('FilmTriviaForm:answer', false);
         filmTrivia.bigAnswerText(correctAnswer, false);
-        this.playAgain();
+        // this.playAgain();
       }
     });
   };
@@ -263,6 +262,25 @@ FilmTrivia.prototype.teamSelected = function () {
     })
 
   });
+};
+
+FilmTrivia.prototype.gameOver = function (team) {
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
+
+  const answersDiv = document.querySelector('#choices-div');
+  answersDiv.innerHTML = '';
+
+  const gameOver = document.createElement('h1');
+  gameOver.classList.add('game-over-text');
+  gameOver.textContent = 'GAME OVER'
+
+  const teamWins = document.createElement('h1');
+  teamWins.classList.add('team-wins-text');
+  teamWins.textContent = `${team} wins!`
+
+  questionDiv.appendChild(gameOver);
+  answersDiv.appendChild(teamWins);
 };
 
 module.exports = FilmTrivia;

@@ -17,7 +17,7 @@ db.questions.insertMany([{
   category: "Entertainment: Film",
   type: "multiple",
   difficulty: "easy",
-  questions: "Which of the following is not the name of a 'Bond Girl'? ",
+  question: "Which of the following is not the name of a 'Bond Girl'? ",
   correct_answer: "Vanessa Kensington",
   incorrect_answer: [
     "Pam Bouvier",
@@ -178,7 +178,7 @@ db.questions.insertMany([{
   incorrect_answer: [
     "Jackie Chan",
     "Jet Li",
-    " Yun-Fat Chow"
+    "Yun-Fat Chow"
   ]
 },
 {

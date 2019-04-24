@@ -9,6 +9,11 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 
 
 FilmTriviaFormView.prototype.bindEvents = function () {
+  const startButton = document.querySelector('#game-start');
+  startButton.addEventListener('click', () => {
+    filmTrivia.reset(this.questions);
+  });
+
   const team1ScoreDiv = document.querySelector('#team1-score');
   const team2ScoreDiv = document.querySelector('#team2-score');
 
@@ -49,6 +54,7 @@ FilmTriviaFormView.prototype.bindEvents = function () {
           PubSub.publish('FilmTriviaForm:answer', true);
           filmTrivia.bigAnswerText(correctAnswer, true);
           filmTrivia.textBox();
+          // filmTrivia.gameOver('Team 1');
         } else {
           PubSub.publish('FilmTriviaForm:answer', false);
           filmTrivia.bigAnswerText(correctAnswer, false);
