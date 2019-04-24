@@ -47,7 +47,7 @@ footer {
 }
 
 .grid-item {
-  /* background-color: rgba(128, 128, 255, 1.0); */
+  /* background-color: rgba(246, 179, 51, 1.0); */
   border: 2px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
@@ -70,7 +70,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(128, 128, 255, 1.0);
+  background-color: rgba(246, 179, 51, 1.0);
   border: 1px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
