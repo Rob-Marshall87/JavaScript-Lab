@@ -15,6 +15,10 @@ const FilmTrivia = function (url) {
 
 FilmTrivia.prototype.bindEvents = function () {
   this.teamSelected();
+  PubSub.subscribe('FilmTrivia:ResetTriggered', ()=> {
+    this.triviaTriggered = false;
+    this.gridTriggered = false;
+  });
 };
 
 FilmTrivia.prototype.getData = function () {
