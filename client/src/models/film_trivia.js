@@ -97,6 +97,7 @@ FilmTrivia.prototype.playAgain = function () {
   const playAgainButton = document.createElement('input');
   playAgainButton.type = 'submit';
   playAgainButton.value = 'New question';
+  playAgainButton.classList.add('new-question');
   playAgainButton.addEventListener('click', () => {
     PubSub.publish('FilmTrivia:reset');
   })
@@ -135,7 +136,7 @@ FilmTrivia.prototype.textBox = function() {
 
       if (answer.boolean) {
 
-        p.textContent = `100 BONUS POINTS!`;  
+        p.textContent = `100 BONUS POINTS!`;
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
@@ -155,13 +156,7 @@ FilmTrivia.prototype.textBox = function() {
         h1.textContent = `Not this time...`;
         questionDiv.appendChild(h1);
 
-        const playAgainButton = document.createElement('input');
-        playAgainButton.type = 'submit';
-        playAgainButton.value = 'New question';
-        playAgainButton.addEventListener('click', () => {
-          PubSub.publish('FilmTrivia:reset');
-        })
-        choicesDiv.appendChild(playAgainButton);
+        this.playAgain();
       }
       choicesDiv.appendChild(p);
     });
@@ -211,7 +206,6 @@ FilmTrivia.prototype.reset = function(questions) {
   answersDiv.innerHTML = '';
 
   const randomObject = this.newQuestion(questions);
-  console.log(randomObject);
 
   const question = randomObject.question;
   const answers = this.answers(randomObject);
@@ -230,6 +224,7 @@ FilmTrivia.prototype.reset = function(questions) {
       } else {
         PubSub.publish('FilmTriviaForm:answer', false);
         filmTrivia.bigAnswerText(correctAnswer, false);
+        this.playAgain();
       }
     });
   };
