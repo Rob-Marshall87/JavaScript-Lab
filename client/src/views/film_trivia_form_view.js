@@ -7,6 +7,7 @@ const FilmTriviaFormView = function(filmTriviaForm) {
   filmTrivia = new FilmTrivia('http://localhost:3000/api/questions', this.questions);
 };
 
+
 FilmTriviaFormView.prototype.bindEvents = function () {
   const team1ScoreDiv = document.querySelector('#team1-score');
   const team2ScoreDiv = document.querySelector('#team2-score');
@@ -21,7 +22,6 @@ FilmTriviaFormView.prototype.bindEvents = function () {
 
   PubSub.subscribe('FilmTrivia:items-ready', (evt) => {
     this.questions = evt.detail;
-    // const newQuestion = filmTrivia.newQuestion(this.questions);
     const randomObject = filmTrivia.newQuestion(this.questions);
 
     const question = randomObject.question;
@@ -34,6 +34,9 @@ FilmTriviaFormView.prototype.bindEvents = function () {
      for (var i = 0; i < teamBuzzers.length; i++) {
        teamBuzzers[i].addEventListener('click', (evt) => {
          this.handleClick(evt.target.id);
+         PubSub.subscribe('FilmTrivia:reset', (evt) => {
+           filmTrivia.reset(this.questions);
+         });
        })
      };
 
