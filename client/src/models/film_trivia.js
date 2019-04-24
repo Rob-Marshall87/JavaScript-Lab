@@ -9,10 +9,16 @@ const FilmTrivia = function (url) {
   this.buzzedTeam = null;
   this.team1Points = null;
   this.team2Points = null;
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
 };
 
 FilmTrivia.prototype.bindEvents = function () {
   this.teamSelected();
+  PubSub.subscribe('FilmTrivia:ResetTriggered', ()=> {
+    this.triviaTriggered = false;
+    this.gridTriggered = false;
+  });
 };
 
 FilmTrivia.prototype.getData = function () {
@@ -91,6 +97,8 @@ FilmTrivia.prototype.bigAnswerText = function(correctAnswer, boolean) {
 };
 
 FilmTrivia.prototype.playAgain = function () {
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
   const choicesDiv = document.querySelector('#choices-div');
   choicesDiv.innerHTML = '';
 
@@ -155,11 +163,10 @@ FilmTrivia.prototype.textBox = function() {
         const h1 = document.createElement('h1');
         h1.textContent = `Not this time...`;
         questionDiv.appendChild(h1);
-
-        this.playAgain();
       }
       choicesDiv.appendChild(p);
     });
+    // this.playAgain();
 
   });
 
@@ -179,6 +186,7 @@ FilmTrivia.prototype.capitalize = function(str) {
 };
 
 FilmTrivia.prototype.updateScores = function(team) {
+  console.log(team);
   if (team.id === team1.id) {
 
     this.scoreDiv = document.querySelector(`#team1-score`);
@@ -224,45 +232,77 @@ FilmTrivia.prototype.reset = function(questions) {
       } else {
         PubSub.publish('FilmTriviaForm:answer', false);
         filmTrivia.bigAnswerText(correctAnswer, false);
-        this.playAgain();
+        // this.playAgain();
       }
     });
   };
 };
 
 FilmTrivia.prototype.teamSelected = function () {
+  this.triviaTriggered = false;
+  this.gridTriggered = false;
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
-    this.buzzedTeam = new Player(evt.detail);
-
+    this.buzzedTeam = evt.detail;
     PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
 
-      const boolean = evt.detail;
-      const points = this.buzzedTeam.triviaAddPoints(boolean);
-
-      if (this.buzzedTeam.name === team1.id) {
-        this.team1Points += points;
+    const answeredCorrectly = evt.detail;
+    if (answeredCorrectly) {
+      if (this.buzzedTeam === 'team1') {
+        (this.triviaTriggered) ? this.team1Points += 0 : this.team1Points += 20;
         this.updateScores(team1);
+        this.triviaTriggered = true;
+        PubSub.publish('FilmTrivia:TriggerRandomiser')
       } else {
-        this.team2Points += points;
+        (this.triviaTriggered) ? this.team2Points += 0 : this.team2Points += 20;
         this.updateScores(team2);
+        this.triviaTriggered = true;
+        PubSub.publish('FilmTrivia:TriggerRandomiser')
       };
-    })
-
+    }
+    else
+    {
+      this.playAgain();
+    }
+    });
     PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
 
-      const boolean = evt.detail.boolean;
-      const points = this.buzzedTeam.imageAddPoints(boolean);
-
-      if (this.buzzedTeam.name === team1.id) {
-        this.team1Points += points;
+      const answeredCorrectly = evt.detail.boolean;
+    if (answeredCorrectly) {
+      if (this.buzzedTeam === 'team1') {
+        (this.gridTriggered) ? this.team1Points += 0 : this.team1Points += 100;
         this.updateScores(team1);
+        this.gridTriggered = true;
       } else {
-        this.team2Points += points;
+        (this.gridTriggered) ? this.team2Points += 0 : this.team2Points += 100;
         this.updateScores(team2);
+        this.gridTriggered = true;
       };
-    })
-
+    }
+    else
+    {
+      this.playAgain();
+    }
+    });
   });
+};
+
+FilmTrivia.prototype.gameOver = function (team) {
+  const questionDiv = document.querySelector('#question-div');
+  questionDiv.innerHTML = '';
+
+  const answersDiv = document.querySelector('#choices-div');
+  answersDiv.innerHTML = '';
+
+  const gameOver = document.createElement('h1');
+  gameOver.classList.add('game-over-text');
+  gameOver.textContent = 'GAME OVER'
+
+  const teamWins = document.createElement('h1');
+  teamWins.classList.add('team-wins-text');
+  teamWins.textContent = `${team} wins!`
+
+  questionDiv.appendChild(gameOver);
+  answersDiv.appendChild(teamWins);
 };
 
 module.exports = FilmTrivia;
