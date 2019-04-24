@@ -50,16 +50,14 @@ Grid.prototype.bindEvents = function() {
     this.blinkAgainIfNeeded();
   });
   PubSub.subscribe('FilmTrivia:Question-Answered', (evt)=> {
-    console.log(evt.detail);
-    if (evt.detail.toLowerCase() === this.currentFilm.film) {
+    const title = evt.detail.toLowerCase();
+    if (title === this.currentFilm.film) {
       this.clearGrid();
-      const answer = true;
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: true});
     }
     else {
-      const answer = false;
+      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: false});
     };
-    PubSub.publish('Grid:AnswerCorrect/Incorrect', answer);
-
 
   });
   PubSub.subscribe('FilmTrivia:NextRound', ()=> {

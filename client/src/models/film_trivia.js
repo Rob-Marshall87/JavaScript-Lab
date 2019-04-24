@@ -148,7 +148,8 @@ FilmTrivia.prototype.textBox = function() {
 
       } else {
 
-        p.textContent = `Great guess...but it's not ${answer.title}`;
+        const capitalTitle = this.capitalize(answer.title);
+        p.textContent = `Great guess...but it's not ${capitalTitle}`;
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
