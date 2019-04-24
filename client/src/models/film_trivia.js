@@ -155,8 +155,8 @@ FilmTrivia.prototype.textBox = function() {
         questionDiv.appendChild(h1);
 
       } else {
-
-        p.textContent = `Great guess...but it's not ${answer.title}`;
+        const capitalTitle = this.capitalize(answer.title);
+        p.textContent = `Great guess...but it's not ${capitalTitle}`;
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
@@ -280,7 +280,7 @@ FilmTrivia.prototype.teamSelected = function () {
     }
     else
     {
-      this.playAgain();
+      // this.playAgain();
     }
     });
   });

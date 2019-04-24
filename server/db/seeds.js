@@ -210,7 +210,7 @@ db.questions.insertMany([{
   type: "multiple",
   difficulty: "easy",
   question: "Who directed the 2015 movie 'The Revenant'?",
-  correct_answer: "Alejandro G. I&ntilde;&aacute;rritu",
+  correct_answer: "Alejandro G. Iñárritu",
   incorrect_answer: [
     "Christopher Nolan",
     "David Fincher",
