@@ -257,10 +257,10 @@ FilmTrivia.prototype.teamSelected = function () {
       const answeredCorrectly = evt.detail.boolean;
     if (answeredCorrectly) {
       if (this.buzzedTeam === 'team1') {
-        this.team1Points += 100;
+        this.team1Points += 50;
         this.updateScores(team1);
       } else {
-        this.team2Points += 100;
+        this.team2Points += 50;
         this.updateScores(team2);
       };
     }
