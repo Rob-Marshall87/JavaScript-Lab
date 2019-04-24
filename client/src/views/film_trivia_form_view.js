@@ -11,7 +11,8 @@ const FilmTriviaFormView = function(filmTriviaForm) {
 FilmTriviaFormView.prototype.bindEvents = function () {
   const startButton = document.querySelector('#game-start');
   startButton.addEventListener('click', () => {
-    PubSub.publish('FilmTrivia:NextRound'); 
+    PubSub.publish('FilmTrivia:NextRound');
+    PubSub.publish('FilmTrivia:ResetTriggered');
     filmTrivia.reset(this.questions);
 
   });
