@@ -31,6 +31,7 @@ Player.prototype.triviaAddPoints = function (answer) {
   this.points = 0;
   if (answer) {
     this.points += 20;
+    PubSub.publish('FilmTrivia:TriggerRandomiser')
   }else {
   }
   return this.points;
