@@ -49,16 +49,14 @@ Grid.prototype.bindEvents = function() {
   PubSub.subscribe('finished-blink', ()=>{
     this.blinkAgainIfNeeded();
   });
-  PubSub.subscribe('FilmTrivia:Question-Answered', (evt)=> {
-    const title = evt.detail.toLowerCase();
-    if (title === this.currentFilm.film) {
+  PubSub.subscribe('FilmTrivia:Answer', (evt)=> {
+    if (evt.detail.toLowerCase() === this.currentFilm.film) {
       this.clearGrid();
-      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: true});
+      return true
     }
     else {
-      PubSub.publish('Grid:AnswerCorrect/Incorrect', {title: title, boolean: false});
-    };
-
+      return false
+    }
   });
   PubSub.subscribe('FilmTrivia:NextRound', ()=> {
     this.reset();
@@ -106,9 +104,6 @@ Grid.prototype.reset = function() {
     }
     this.populate();
 }
-
-
-
 
 Grid.prototype.startBlinking = function() {
   this.howManyMoreBlinks = 15;
@@ -181,7 +176,7 @@ Grid.prototype.changeBox =  function(active, len) {
 }
 
 Grid.prototype.flash = function (times, box, colour) {
-  colour = (colour === 'red') ? 'rgba(128, 128, 255, 1.0)' : 'red';
+  colour = (colour === 'red') ? 'rgba(246, 179, 51, 1.0)' : 'red';
   this.goColour(box, colour);
   if (times > 0) {
     setTimeout(() => {
