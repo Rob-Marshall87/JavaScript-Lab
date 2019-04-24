@@ -19,12 +19,9 @@ Player.prototype.questionAnswered = function () {
     this.triviaAddPoints(evt);
   });
 
-  // PubSub.subscribe('FilmTriviaForm:Inputted-answer-image', (evt) => {
-  //   this.imageAddPoints(evt);
-  // });
-
-  // PubSub.publish('Players:return-scores', (team1, team2));
-  // this.checkGamePoints();
+  PubSub.subscribe('FilmTriviaForm:Inputted-answer-image', (evt) => {
+    this.imageAddPoints(evt);
+  });
 };
 
 Player.prototype.triviaAddPoints = function (answer) {
