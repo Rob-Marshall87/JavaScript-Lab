@@ -63,6 +63,9 @@ Grid.prototype.bindEvents = function() {
     this.currentFilm = this.selectRandomFilm();
     PubSub.publish("Grid:NewFilmPicture", this.currentFilm);
   });
+  PubSub.subscribe('FilmTrivia:TriggerRandomiser', () => {
+    this.startBlinking();
+  }
 
 }
 
