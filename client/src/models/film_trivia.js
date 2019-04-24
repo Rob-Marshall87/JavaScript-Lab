@@ -135,7 +135,7 @@ FilmTrivia.prototype.textBox = function() {
 
       if (answer.boolean) {
 
-        p.textContent = `100 BONUS POINTS!`;  
+        p.textContent = `100 BONUS POINTS!`;
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
@@ -237,36 +237,43 @@ FilmTrivia.prototype.reset = function(questions) {
 
 FilmTrivia.prototype.teamSelected = function () {
   PubSub.subscribe('FilmTriviaForm:team-selected', (evt) => {
-    this.buzzedTeam = new Player(evt.detail);
-
+    this.buzzedTeam = evt.detail;
     PubSub.subscribe('FilmTriviaForm:answer', (evt) => {
 
-      const boolean = evt.detail;
-      const points = this.buzzedTeam.triviaAddPoints(boolean);
-
-      if (this.buzzedTeam.name === team1.id) {
-        this.team1Points += points;
+    const answeredCorrectly = evt.detail;
+    if (answeredCorrectly) {
+      if (this.buzzedTeam === 'team1') {
+        this.team1Points += 20;
         this.updateScores(team1);
+        PubSub.publish('FilmTrivia:TriggerRandomiser')
       } else {
-        this.team2Points += points;
+        this.team2Points += 20;
         this.updateScores(team2);
+        PubSub.publish('FilmTrivia:TriggerRandomiser')
       };
-    })
-
+    }
+    else
+    {
+      this.playAgain();
+    }
+    });
     PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
 
-      const boolean = evt.detail.boolean;
-      const points = this.buzzedTeam.imageAddPoints(boolean);
-
-      if (this.buzzedTeam.name === team1.id) {
-        this.team1Points += points;
+      const answeredCorrectly = evt.detail.boolean;
+    if (answeredCorrectly) {
+      if (this.buzzedTeam === 'team1') {
+        this.team1Points += 100;
         this.updateScores(team1);
       } else {
-        this.team2Points += points;
+        this.team2Points += 100;
         this.updateScores(team2);
       };
-    })
-
+    }
+    else
+    {
+      this.playAgain();
+    }
+    });
   });
 };
 

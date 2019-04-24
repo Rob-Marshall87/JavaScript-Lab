@@ -14,7 +14,7 @@ const Grid = function(){
           { film:'skyfall', file:'8.png' },
           { film:'temple of doom', file:'9.png' },
           { film:'rogue one', file:'10.jpg' },
-          { film:'sin city', file:'11.jpg' },
+          { film:'sin city', file:'11.png' },
           { film: 'psycho', file: '12.png' },
           { film: 'ghostbusters 2', file: '13.png' },
           { film: 'the truman show', file: '14.png' },
