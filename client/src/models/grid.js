@@ -65,8 +65,7 @@ Grid.prototype.bindEvents = function() {
   });
   PubSub.subscribe('FilmTrivia:TriggerRandomiser', () => {
     this.startBlinking();
-  }
-
+  });
 }
 
 
