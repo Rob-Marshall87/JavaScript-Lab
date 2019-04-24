@@ -126,8 +126,6 @@ FilmTrivia.prototype.textBox = function() {
     const answerText = evt.target['text-box-id'].value.toLowerCase();
     PubSub.publish('FilmTrivia:Question-Answered', answerText);
 
-
-//This bit of code needs to be activated
     PubSub.subscribe('Grid:AnswerCorrect/Incorrect', (evt) => {
       answer = evt.detail;
 
@@ -137,7 +135,7 @@ FilmTrivia.prototype.textBox = function() {
 
       if (answer.boolean) {
 
-        p.textContent = `100 BONUS POINTS!`;
+        p.textContent = `100 BONUS POINTS!`;  
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
@@ -149,8 +147,7 @@ FilmTrivia.prototype.textBox = function() {
 
       } else {
 
-        const capitalTitle = this.capitalize(answer.title);
-        p.textContent = `Great guess...but it's not ${capitalTitle}`;
+        p.textContent = `Great guess...but it's not ${answer.title}`;
 
         const questionDiv = document.querySelector('#question-div');
         questionDiv.innerHTML = '';
