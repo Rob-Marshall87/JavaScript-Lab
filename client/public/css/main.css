@@ -14,7 +14,8 @@ header {
   position: relative;
   min-height:100%;
   margin-bottom: 1.2em;
-  padding: 0.7em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
 }
 
 body {
@@ -31,15 +32,15 @@ footer {
   width: 100%;
   position: absolute;
   left: 0px;
-  /* bottom: 0px; */
-  margin-top: 1em;
+  margin-top: 4.5em;
 }
+
+/* GAME GRID CONTAINER ITEMS */
 
 .game-grid-container {
   display: grid;
   z-index: 9;
   grid-template-columns: 7em auto 7em;
-  /* background-color: #0005; */
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center center;
@@ -47,8 +48,8 @@ footer {
   text-align: center;
 }
 
+/* background-color: rgba(246, 179, 51, 1.0); */
 .grid-item {
-  /* background-color: rgba(246, 179, 51, 1.0); */
   border: 2px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
@@ -56,7 +57,6 @@ footer {
 
 .inner-game-grid-container {
   display: grid;
-  /* background: url(img/the_shining.jpg); */
   background-repeat: no-repeat;
   grid-template-columns: auto auto auto;
   text-align: center;
@@ -71,7 +71,6 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: rgba(246, 179, 51, 1.0); */
   border: 1px solid rgba(0, 0, 0, 0.8);
   font-size: 30px;
   text-align: center;
@@ -97,7 +96,6 @@ footer {
   flex-wrap: wrap;
   align-content: stretch;
   height: 100%;
-  /* margin: 0.3em; */
 }
 
 .choice-button {
@@ -109,7 +107,6 @@ footer {
   align-content: space-around;
   border: solid;
   border-radius: 20px;
-  /* margin-bottom: 1em; */
   margin: 0.3em;
   padding: 0.2em;
 }
@@ -122,7 +119,7 @@ footer {
 #question-box {
   color: rgba(229, 299, 229, 1.0);
   width: 25em;
-  /* margin-bottom: 1.6em; */
+  margin-bottom: 1.5em;
   padding: 1em;
   justify-self: center;
 }
@@ -143,14 +140,11 @@ footer {
 .big-answer-text-green {
   background-color: rgba(0, 0, 0, 0.4);
   border-color: black;
-  /* width: calc(47% - 1em); */
   display: flex;
   justify-content: left;
   align-content: space-around;
   border: solid;
   border-radius: 20px;
-  /* margin-bottom: 0.5em; */
-  /* margin-top: 1.5em; */
   padding: 0.4em;
   margin: 1em;
 }
@@ -162,14 +156,11 @@ footer {
 .big-answer-text-red {
   background-color: rgba(0, 0, 0, 0.4);
   border-color: black;
-  /* width: calc(47% - 1em); */
   display: flex;
   justify-content: left;
   align-content: space-around;
   border: solid;
   border-radius: 20px;
-  /* margin-bottom: 0.5em; */
-  /* margin-top: 1.5em; */
   padding: 0.4em;
   margin: 1em;
 }
@@ -204,27 +195,21 @@ footer {
 .team-buzzer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 2em;
+
 }
 
 .team-buzzer_one {
   width: 5em;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   margin: 0.4em;
   margin-right: -2em;
-  /* margin-bottom: 5em; */
 }
 
 .team-buzzer_two {
   width: 5em;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   margin: 0.4em;
   margin-left: -2em;
-  /* margin-bottom: 5em; */
 }
 
 .team-buzzer:hover{
@@ -271,18 +256,28 @@ footer {
 
 .title-box p {
   background-color: rgba(223, 179, 51, 0.3);
-  border-color: #fff;
+  border-color: rgba(229, 299, 229, 1.0);
   width: calc(47% - 1em);
   display: flex;
   justify-content: center;
   align-content: space-around;
   border: solid;
   border-radius: 20px;
-  /* margin-bottom: 1em; */
   margin-top: 1.5em;
-  padding: 0 0.8em 0 0.8em;
+  padding: 0 1.2em 0 1.2em;
 }
 
 .team-score{
   color: white;
+}
+
+.new-question {
+  background-color: rgba(223, 179, 51, 0.2);
+  border: solid;
+  border-radius: 20px;
+  padding: 0.5em;
+  line-height: 1.3;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: rgba(229, 299, 229, 1.0);
 }
