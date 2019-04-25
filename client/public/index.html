@@ -1,61 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="./css/main.css">
-        <script src="js/bundle.js"></script>
-    </head>
-    <body>
-      <div class="site">
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="./css/main.css">
+      <script src="js/bundle.js"></script>
+  </head>
+  <body>
+    <div class="site">
       <header class="header-main">
         <img id="title_logo" class="title_logo" width="100" height="auto" src="css/img/IMDbeatdown1.png" />
       </header>
-    <div class="game-grid-container">
-      <div class="" id="game-start" >
-        <img id="start_button" class="start_button" width="100" height="auto" src="css/img/start_button.png" />
-      </div>
-      <div class="title-box" id="bonus-guess-box">
-        <div class="team-score" id="team1-score"></div>
-        <div class="heading" id="heading">
-          <img id="vs_logo" class="vs_logo" width="100" height="auto" src="css/img/vs_logo.png" />
+      <div class="game-grid-container">
+        <div class="" id="game-start" >
+          <img id="start_button" class="start_button" width="100" height="auto" src="css/img/start_button.png" />
         </div>
-        <div class="team-score" id="team2-score"></div>
-      </div>
-      <div class="" id="game-timer"></div>
+        <div class="title-box" id="bonus-guess-box">
+          <div class="team-score" id="team1-score"></div>
+          <div class="heading" id="heading">
+            <img id="vs_logo" class="vs_logo" width="100" height="auto" src="css/img/vs_logo.png" />
+          </div>
+          <div class="team-score" id="team2-score"></div>
+        </div>
 
-      <div class="team-score"></div>
+        <div class="" id="game-timer"></div>
 
-      <div class="" id="bonus-grid">
-        <div class="inner-game-grid-container">
-          <div class="inner-grid-item" id="grid-0"><img src="./css/img/clipart1.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-1"><img src="./css/img/clipart2.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-2"><img src="./css/img/clipart3.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-3"><img src="./css/img/clipart4.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-4"><img src="./css/img/clipart5.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-5"><img src="./css/img/clipart6.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-6"><img src="./css/img/clipart7.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-7"><img src="./css/img/clipart8.png" alt="" height="65" width="70" align="middle"></div>
-          <div class="inner-grid-item" id="grid-8"><img src="./css/img/clipart9.png" alt="" height="65" width="70" align="middle"></div>
+        <div class="team-score"></div>
+
+        <div class="" id="bonus-grid">
+          <div class="inner-game-grid-container">
+            <div class="inner-grid-item" id="grid-0"><img src="./css/img/clipart1.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-1"><img src="./css/img/clipart2.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-2"><img src="./css/img/clipart3.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-3"><img src="./css/img/clipart4.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-4"><img src="./css/img/clipart5.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-5"><img src="./css/img/clipart6.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-6"><img src="./css/img/clipart7.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-7"><img src="./css/img/clipart8.png" alt="" height="65" width="70" align="middle"></div>
+            <div class="inner-grid-item" id="grid-8"><img src="./css/img/clipart9.png" alt="" height="65" width="70" align="middle"></div>
+          </div>
+        </div>
+
+        <div class="team-score"></div>
+
+        <div class="team-buzzer" id="team-one-buzzer">
+          <img class="team-buzzer_one" id="team1" width="100" height="auto" src="css/img/team_one_button.png" />
+        </div>
+
+        <div class="" id="question-box">
+          <div id="question-div"></div>
+          <br>
+          <div id="choices-div"></div>
+        </div>
+
+        <div class="team-buzzer" id="team-two-buzzer">
+          <img class="team-buzzer_two" id="team2" width="100" height="auto" src="css/img/team_two_button.png" />
         </div>
       </div>
-
-      <div class="team-score"></div>
-
-      <div class="team-buzzer" id="team-one-buzzer">
-        <img class="team-buzzer_one" id="team1" width="100" height="auto" src="css/img/team_one_button.png" />
-      </div>
-
-      <div class="" id="question-box">
-        <div id="question-div"></div>
-        <br>
-        <div id="choices-div"></div>
-      </div>
-
-      <div class="team-buzzer" id="team-two-buzzer">
-        <img class="team-buzzer_two" id="team2" width="100" height="auto" src="css/img/team_two_button.png" />
-      </div>
-    </div>
       <footer class="footer-main"></footer>
-      </div>
-    </body>
-    </html>
+    </div>
+  </body>
+</html>

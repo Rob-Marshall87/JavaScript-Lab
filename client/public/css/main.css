@@ -202,11 +202,17 @@ footer.footer-main {
 }
 
 .team-buzzer {
+  cursor: pointer;
+  transition: background-color 1s ease-in-out, transform 0.3s linear;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-top: 2em;
+}
 
+.team-buzzer:hover {
+  transition: background-color 0.2s ease-in-out;
+  transform: scale(1.05, 1.05);
 }
 
 .team-buzzer_one {
@@ -259,8 +265,15 @@ footer.footer-main {
 }
 
 .start_button {
+  cursor: pointer;
+  transition: background-color 1s ease-in-out, transform 0.3s linear;
   width: 3em;
   margin-left: -2em;
+}
+
+.start-button:hover {
+  transition: background-color 0.2s ease-in-out;
+  transform: scale(1.05, 1.05);
 }
 
 .title-box p {
@@ -281,6 +294,7 @@ footer.footer-main {
 }
 
 .new-question {
+  cursor: pointer;
   background-color: rgba(223, 179, 51, 0.2);
   border: solid;
   border-radius: 20px;
