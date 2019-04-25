@@ -166,7 +166,7 @@ FilmTrivia.prototype.textBox = function() {
       }
       choicesDiv.appendChild(p);
     });
-    // this.playAgain();
+    this.playAgain();
 
   });
 
