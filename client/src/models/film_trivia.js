@@ -232,7 +232,7 @@ FilmTrivia.prototype.reset = function(questions) {
       } else {
         PubSub.publish('FilmTriviaForm:answer', false);
         filmTrivia.bigAnswerText(correctAnswer, false);
-        // this.playAgain();
+        this.playAgain();
       }
     });
   };
