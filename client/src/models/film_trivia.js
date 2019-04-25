@@ -280,7 +280,7 @@ FilmTrivia.prototype.teamSelected = function () {
     }
     else
     {
-      // this.playAgain();
+      this.playAgain();
     }
     });
   });
